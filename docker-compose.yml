@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  my-golang-app-run:
+    build: main_server/
+    volumes:
+      - .:/go/src/main_server
+    ports:
+      - 3030:3001
