@@ -21,6 +21,6 @@ TODO: store examples from the test folder in redis and fool around with it
 
 Things to know:
 -   Redis: especially RedisJSON - https://oss.redislabs.com/redisjson/
--   Docker-compose: there is a docker-compose.yml file and the a dockerfile in
+-   Docker-compose: there is a docker-compose.yml file and then a dockerfile in
     the main_server folder
 -   Go: gorilla/mux and redigo libraries
