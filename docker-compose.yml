@@ -1,8 +1,20 @@
 version: '2'
 
 services:
+
+  redis:
+    image: redislabs/rejson
+    ports:
+      - "6380:6379"
+
   my-golang-app-run:
     build: main_server/
+    links:
+      - redis
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis:6379
     volumes:
       - .:/go/src/main_server
     ports:
