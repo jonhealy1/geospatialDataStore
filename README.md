@@ -1,8 +1,6 @@
 install docker
 
-install redis
-
-run from the same folder as docker-compose.yml file
+run from the main folder that contains the docker-compose.yml file
 $ docker-compose build
 $ docker-compose up
 
@@ -12,7 +10,7 @@ $ docker-compose up
 
 my-golang-app-run_1  | Executing Example_JSONSET for Redigo Client
 my-golang-app-run_1  | Success: OK
-my-golang-app-run_1  | Catalog read from redis : main.Catalog{Stac_version:"0.6.1", Id:"sample", Title:"Sample catalog", Description:"This is a very basic sample catalog.", Links:main.Links{Href:"item.json", Rel:"item"}}
+my-golang-app-run_1  | Catalog read from redis : main.Catalog{CatalogB:map[string]string{"description":"This is a very basic sample catalog.", "id":"sample", "stac_version":"0.6.1", "title":"Sample catalog"}, Links:main.Links{Href:"http://www.example.com/sample-catalog/catalog.json", Rel:"root"}}
 
 
 TODO: store examples from the test folder in redis and fool around with it
