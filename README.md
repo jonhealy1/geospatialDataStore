@@ -2,9 +2,7 @@ install docker
 
 install redis
 
-$ docker run -p 6379:6379 --name redis-redisjson redislabs/rejson:latest
-
-run in a separate window - run from the same folder as docker-compose.yml file
+run from the same folder as docker-compose.yml file
 $ docker-compose build
 $ docker-compose up
 
