@@ -19,12 +19,17 @@ import (
 //
 
 // Catalog struct
+// type Catalog struct {
+// 	Stac_version string `json:"stac_version,omitempy"`
+// 	Id           string `json:"id,omitempy"`
+// 	Title        string `json:"title,omitempy"`
+// 	Description  string `json:"description,omitempy"`
+// 	Links        Links  `json:"links,omitempy"`
+// }
+
 type Catalog struct {
-	Stac_version string `json:"stac_version,omitempy"`
-	Id           string `json:"id,omitempy"`
-	Title        string `json:"title,omitempy"`
-	Description  string `json:"description,omitempy"`
-	Links        Links  `json:"links,omitempy"`
+	CatalogB map[string]string `json:"stac_version,omitempy"`
+	Links    Links             `json:"links,omitempy"`
 }
 
 type Links struct {
@@ -32,18 +37,39 @@ type Links struct {
 	Rel  string `json:"rel,omitempy"`
 }
 
+var catalogBasic map[string]string
+
 func Example_JSONSet(rh *rejson.Handler) {
 
+	//catalog := make(map[string]string)
+	catalogBasic = map[string]string{
+		"stac_version": "0.6.1",
+		"id":           "sample",
+		"title":        "Sample catalog",
+		"description":  "This is a very basic sample catalog.",
+	}
+	//catalog["stac_version"] = "0.6.1"
+	fmt.Println(catalogBasic)
+
 	catalog := Catalog{
-		Stac_version: "0.6.1",
-		Id:           "sample",
-		Title:        "Sample catalog",
-		Description:  "This is a very basic sample catalog.",
+		CatalogB: catalogBasic,
 		Links: Links{
-			"item.json",
-			"item",
+			Href: "http://www.example.com/sample-catalog/catalog.json",
+			Rel:  "root",
 		},
 	}
+
+	// catalog := Catalog{
+	// 	Stac_version: "0.6.1",
+	// 	Id:           "sample",
+	// 	Title:        "Sample catalog",
+	// 	Description:  "This is a very basic sample catalog.",
+	// 	Links: Links{
+	// 		"item.json",
+	// 		"item",
+	// 	},
+	// }
+
 	res, err := rh.JSONSet("catalog", ".", catalog)
 	if err != nil {
 		log.Fatalf("Failed to JSONSet")
@@ -62,7 +88,8 @@ func Example_JSONSet(rh *rejson.Handler) {
 		return
 	}
 
-	readCatalog := Catalog{}
+	//readCatalog := Catalog{}
+	readCatalog := catalog
 	err = json.Unmarshal(catalogJSON, &readCatalog)
 	if err != nil {
 		log.Fatalf("Failed to JSON Unmarshal")
