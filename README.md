@@ -12,10 +12,10 @@ $ docker-compose up
 
 2. should see this in the terminal window:
 
-my-golang-app-run_1  | Hello!
 my-golang-app-run_1  | Executing Example_JSONSET for Redigo Client
 my-golang-app-run_1  | Success: OK
-my-golang-app-run_1  | Student read from redis : main.Student{Name:main.Name{First:"Mark", Middle:"S", Last:"Pronto"}, Rank:1}
+my-golang-app-run_1  | Catalog read from redis : main.Catalog{Stac_version:"0.6.1", Id:"sample", Title:"Sample catalog", Description:"This is a very basic sample catalog.", Links:main.Links{Href:"item.json", Rel:"item"}}
+
 
 TODO: store examples from the test folder in redis and fool around with it
 

@@ -18,30 +18,33 @@ import (
 // docker run -p 6379:6379 --name redis-redisjson redislabs/rejson:latest
 //
 
-// Name - student name
-type Name struct {
-	First  string `json:"first,omitempty"`
-	Middle string `json:"middle,omitempty"`
-	Last   string `json:"last,omitempty"`
+// Catalog struct
+type Catalog struct {
+	Stac_version string `json:"stac_version,omitempy"`
+	Id           string `json:"id,omitempy"`
+	Title        string `json:"title,omitempy"`
+	Description  string `json:"description,omitempy"`
+	Links        Links  `json:"links,omitempy"`
 }
 
-// Student - student object
-type Student struct {
-	Name Name `json:"name,omitempty"`
-	Rank int  `json:"rank,omitempty"`
+type Links struct {
+	Href string `json:"href,omitempy"`
+	Rel  string `json:"rel,omitempy"`
 }
 
 func Example_JSONSet(rh *rejson.Handler) {
 
-	student := Student{
-		Name: Name{
-			"Mark",
-			"S",
-			"Pronto",
+	catalog := Catalog{
+		Stac_version: "0.6.1",
+		Id:           "sample",
+		Title:        "Sample catalog",
+		Description:  "This is a very basic sample catalog.",
+		Links: Links{
+			"item.json",
+			"item",
 		},
-		Rank: 1,
 	}
-	res, err := rh.JSONSet("student", ".", student)
+	res, err := rh.JSONSet("catalog", ".", catalog)
 	if err != nil {
 		log.Fatalf("Failed to JSONSet")
 		return
@@ -53,20 +56,20 @@ func Example_JSONSet(rh *rejson.Handler) {
 		fmt.Println("Failed to Set: ")
 	}
 
-	studentJSON, err := redis.Bytes(rh.JSONGet("student", "."))
+	catalogJSON, err := redis.Bytes(rh.JSONGet("catalog", "."))
 	if err != nil {
 		log.Fatalf("Failed to JSONGet")
 		return
 	}
 
-	readStudent := Student{}
-	err = json.Unmarshal(studentJSON, &readStudent)
+	readCatalog := Catalog{}
+	err = json.Unmarshal(catalogJSON, &readCatalog)
 	if err != nil {
 		log.Fatalf("Failed to JSON Unmarshal")
 		return
 	}
 
-	fmt.Printf("Student read from redis : %#v\n", readStudent)
+	fmt.Printf("Catalog read from redis : %#v\n", readCatalog)
 }
 
 func main() {
