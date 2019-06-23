@@ -1,8 +1,8 @@
 install docker
 
-run from the main folder that contains the docker-compose.yml file
-$ docker-compose build
-$ docker-compose up
+run from the main folder that contains the docker-compose.yml file  
+$ docker-compose build  
+$ docker-compose up  
 
 1. navigate to localhost:3030 - should see hello world message
 
