@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"html"
+	"time"
 
 	//rejson "go-rejson"
 	"log"
@@ -11,12 +13,15 @@ import (
 	"os"
 
 	"github.com/gomodule/redigo/redis"
+	"github.com/gorilla/mux"
 	rejson "github.com/nitishm/go-rejson"
 )
 
 // to run redis and rejson
 // docker run -p 6379:6379 --name redis-redisjson redislabs/rejson:latest
 //
+// gorilla/mux routing tutorial:
+// https://thenewstack.io/make-a-restful-json-api-go/
 
 // Catalog struct
 // type Catalog struct {
@@ -26,6 +31,13 @@ import (
 // 	Description  string `json:"description,omitempy"`
 // 	Links        Links  `json:"links,omitempy"`
 // }
+type Todo struct {
+	Name      string    `json:"name"`
+	Completed bool      `json:"completed"`
+	Due       time.Time `json:"due"`
+}
+
+type Todos []Todo
 
 type Catalog struct {
 	CatalogB map[string]string `json:"stac_version,omitempy"`
@@ -37,9 +49,11 @@ type Links struct {
 	Rel  string `json:"rel,omitempy"`
 }
 
+type Catalogs []Catalog
+
 var catalogBasic map[string]string
 
-func Example_JSONSet(rh *rejson.Handler) {
+func Example_JSONSet(rh *rejson.Handler) Catalog {
 
 	//catalog := make(map[string]string)
 	catalogBasic = map[string]string{
@@ -73,7 +87,7 @@ func Example_JSONSet(rh *rejson.Handler) {
 	res, err := rh.JSONSet("catalog", ".", catalog)
 	if err != nil {
 		log.Fatalf("Failed to JSONSet")
-		return
+		return catalog
 	}
 
 	if res.(string) == "OK" {
@@ -85,7 +99,7 @@ func Example_JSONSet(rh *rejson.Handler) {
 	catalogJSON, err := redis.Bytes(rh.JSONGet("catalog", "."))
 	if err != nil {
 		log.Fatalf("Failed to JSONGet")
-		return
+		return catalog
 	}
 
 	//readCatalog := Catalog{}
@@ -93,10 +107,11 @@ func Example_JSONSet(rh *rejson.Handler) {
 	err = json.Unmarshal(catalogJSON, &readCatalog)
 	if err != nil {
 		log.Fatalf("Failed to JSON Unmarshal")
-		return
+		return readCatalog
 	}
 
 	fmt.Printf("Catalog read from redis : %#v\n", readCatalog)
+	return readCatalog
 }
 
 func main() {
@@ -122,18 +137,52 @@ func main() {
 	}()
 	rh.SetRedigoClient(conn)
 	fmt.Println("Executing Example_JSONSET for Redigo Client")
-	Example_JSONSet(rh)
-
+	catalog := Example_JSONSet(rh)
+	fmt.Println("Catalog Href: ", catalog.Links.Href)
 	/* NET/HTTP */
+
+	// var PORT string
+	// if PORT = os.Getenv("PORT"); PORT == "" {
+	// 	PORT = "3001"
+	// }
+
+	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	// 	fmt.Fprintf(w, "Hello Hello World from path: %s\n", r.URL.Path)
+	// 	fmt.Fprintf(w, "Catalog Href: ", catalog.Links.Href)
+	// })
+
+	// http.ListenAndServe(":"+PORT, nil)
+
+	/* GORILLA/MUX */
 
 	var PORT string
 	if PORT = os.Getenv("PORT"); PORT == "" {
 		PORT = "3001"
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello Hello World from path: %s\n", r.URL.Path)
-	})
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/", Index)
+	router.HandleFunc("/todos", TodoIndex)
+	router.HandleFunc("/todos/{todoId}", TodoShow)
 
-	http.ListenAndServe(":"+PORT, nil)
+	log.Fatal(http.ListenAndServe(":"+PORT, router))
+}
+
+func Index(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+}
+
+func TodoIndex(w http.ResponseWriter, r *http.Request) {
+	todos := Todos{
+		Todo{Name: "Write presentation"},
+		Todo{Name: "Host meetup"},
+	}
+
+	json.NewEncoder(w).Encode(todos)
+}
+
+func TodoShow(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	todoId := vars["todoId"]
+	fmt.Fprintln(w, "Todo show:", todoId)
 }

@@ -4,7 +4,8 @@ run from the main folder that contains the docker-compose.yml file
 $ docker-compose build  
 $ docker-compose up  
 
-1. navigate to localhost:3030 - should see hello world message
+1. navigate to localhost:3030 - should see the hello message  
+navigate to localhost:3030/todos - should see TODOS struct
 
 2. should see this in the terminal window:
 
