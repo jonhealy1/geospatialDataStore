@@ -19,7 +19,13 @@ var routes = Routes{
 		Index,
 	},
 	Route{
-		"TodoIndex",
+		"CatalogCreate",
+		"POST",
+		"/catalogs",
+		CatalogCreate,
+	},
+	Route{
+		"CatalogIndex",
 		"GET",
 		"/catalogs",
 		CatalogIndex,

@@ -1,18 +1,18 @@
 package main
 
 import (
+
+	//rejson "go-rejson"
 	"encoding/json"
 	"flag"
 	"fmt"
-
-	//rejson "go-rejson"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/gomodule/redigo/redis"
-	"github.com/gorilla/mux"
 	rejson "github.com/nitishm/go-rejson"
+
+	"github.com/gomodule/redigo/redis"
 )
 
 // to run redis and rejson
@@ -23,6 +23,7 @@ import (
 
 // Catalog struct
 type Catalog struct {
+	RId          int    `json:"rid,omitempty"`
 	Stac_version string `json:"stac_version,omitempy"`
 	Id           string `json:"id,omitempy"`
 	Title        string `json:"title,omitempy"`
@@ -107,6 +108,9 @@ func Example_JSONSet(rh *rejson.Handler) Catalog {
 }
 
 func main() {
+
+	// JSON SET
+
 	redisurl := os.Getenv("REDIS_URL")
 	var addr = flag.String("Server", redisurl, "Redis server address")
 
@@ -139,10 +143,11 @@ func main() {
 		PORT = "3001"
 	}
 
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", Index)
-	router.HandleFunc("/catalogs", CatalogIndex)
-	router.HandleFunc("/catalogs/{catalogId}", CatalogShow)
-
+	// router := mux.NewRouter().StrictSlash(true)
+	// router.HandleFunc("/", Index)
+	// router.HandleFunc("/catalogs", CatalogIndex)
+	// router.HandleFunc("/catalogs/{catalogId}", CatalogShow)
+	router := NewRouter()
 	log.Fatal(http.ListenAndServe(":"+PORT, router))
+	// log.Fatal(http.ListenAndServe(":8080", router))
 }
