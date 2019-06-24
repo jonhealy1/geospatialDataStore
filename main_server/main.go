@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"html"
 	"time"
 
 	//rejson "go-rejson"
@@ -40,7 +39,7 @@ type Todo struct {
 type Todos []Todo
 
 type Catalog struct {
-	CatalogB map[string]string `json:"stac_version,omitempy"`
+	CatalogB map[string]string `json:"catalogb,omitempy"`
 	Links    Links             `json:"links,omitempy"`
 }
 
@@ -139,19 +138,6 @@ func main() {
 	fmt.Println("Executing Example_JSONSET for Redigo Client")
 	catalog := Example_JSONSet(rh)
 	fmt.Println("Catalog Href: ", catalog.Links.Href)
-	/* NET/HTTP */
-
-	// var PORT string
-	// if PORT = os.Getenv("PORT"); PORT == "" {
-	// 	PORT = "3001"
-	// }
-
-	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	// 	fmt.Fprintf(w, "Hello Hello World from path: %s\n", r.URL.Path)
-	// 	fmt.Fprintf(w, "Catalog Href: ", catalog.Links.Href)
-	// })
-
-	// http.ListenAndServe(":"+PORT, nil)
 
 	/* GORILLA/MUX */
 
@@ -166,23 +152,4 @@ func main() {
 	router.HandleFunc("/todos/{todoId}", TodoShow)
 
 	log.Fatal(http.ListenAndServe(":"+PORT, router))
-}
-
-func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-}
-
-func TodoIndex(w http.ResponseWriter, r *http.Request) {
-	todos := Todos{
-		Todo{Name: "Write presentation"},
-		Todo{Name: "Host meetup"},
-	}
-
-	json.NewEncoder(w).Encode(todos)
-}
-
-func TodoShow(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	todoId := vars["todoId"]
-	fmt.Fprintln(w, "Todo show:", todoId)
 }
