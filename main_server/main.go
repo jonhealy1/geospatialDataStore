@@ -3,7 +3,7 @@ package main
 import (
 
 	//rejson "go-rejson"
-	"encoding/json"
+
 	"flag"
 	"fmt"
 	"log"
@@ -20,92 +20,6 @@ import (
 //
 // gorilla/mux routing tutorial:
 // https://thenewstack.io/make-a-restful-json-api-go/
-
-// Catalog struct
-type Catalog struct {
-	RId          int    `json:"rid,omitempty"`
-	Stac_version string `json:"stac_version,omitempy"`
-	Id           string `json:"id,omitempy"`
-	Title        string `json:"title,omitempy"`
-	Description  string `json:"description,omitempy"`
-	Links        Links  `json:"links,omitempy"`
-}
-
-// type Catalog struct {
-// 	CatalogB map[string]string `json:"catalogb,omitempy"`
-// 	Links    Links             `json:"links,omitempy"`
-// }
-
-type Links struct {
-	Href string `json:"href,omitempy"`
-	Rel  string `json:"rel,omitempy"`
-}
-
-//type Links []Link
-type Catalogs []Catalog
-
-//var catalogBasic map[string]string
-
-func Example_JSONSet(rh *rejson.Handler) Catalog {
-
-	//catalog := make(map[string]string)
-	// catalogBasic = map[string]string{
-	// 	"stac_version": "0.6.1",
-	// 	"id":           "sample",
-	// 	"title":        "Sample catalog",
-	// 	"description":  "This is a very basic sample catalog.",
-	// }
-	// //catalog["stac_version"] = "0.6.1"
-	// fmt.Println(catalogBasic)
-
-	// catalog := Catalog{
-	// 	CatalogB: catalogBasic,
-	// 	Links: Links{
-	// 		Href: "http://www.example.com/sample-catalog/catalog.json",
-	// 		Rel:  "root",
-	// 	},
-	// }
-
-	catalog := Catalog{
-		Stac_version: "0.6.1",
-		Id:           "sample",
-		Title:        "Sample catalog",
-		Description:  "This is a very basic sample catalog.",
-		Links: Links{
-			Href: "http://www.example.com/sample-catalog/catalog.json",
-			Rel:  "item",
-		},
-	}
-
-	res, err := rh.JSONSet("catalog", ".", catalog)
-	if err != nil {
-		log.Fatalf("Failed to JSONSet")
-		return catalog
-	}
-
-	if res.(string) == "OK" {
-		fmt.Printf("Success: %s\n", res)
-	} else {
-		fmt.Println("Failed to Set: ")
-	}
-
-	catalogJSON, err := redis.Bytes(rh.JSONGet("catalog", "."))
-	if err != nil {
-		log.Fatalf("Failed to JSONGet")
-		return catalog
-	}
-
-	//readCatalog := Catalog{}
-	readCatalog := catalog
-	err = json.Unmarshal(catalogJSON, &readCatalog)
-	if err != nil {
-		log.Fatalf("Failed to JSON Unmarshal")
-		return readCatalog
-	}
-
-	fmt.Printf("Catalog read from redis : %#v\n", readCatalog)
-	return readCatalog
-}
 
 func main() {
 
