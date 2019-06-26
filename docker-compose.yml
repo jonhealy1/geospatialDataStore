@@ -19,3 +19,9 @@ services:
       - .:/go/src/main_server
     ports:
       - 3030:3001
+
+  front-end:
+    ports:
+      - "4200:4200"
+    build: ./front-end
+    image: angular_front-end

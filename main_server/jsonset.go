@@ -6,7 +6,7 @@ import (
 	"log"
 
 	"github.com/gomodule/redigo/redis"
-	rejson "github.com/nitishm/go-rejson"
+	"github.com/nitishm/go-rejson"
 )
 
 func Example_JSONSet(rh *rejson.Handler) Catalog {

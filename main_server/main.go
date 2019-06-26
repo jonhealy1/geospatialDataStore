@@ -61,6 +61,7 @@ func main() {
 	// router.HandleFunc("/", Index)
 	// router.HandleFunc("/catalogs", CatalogIndex)
 	// router.HandleFunc("/catalogs/{catalogId}", CatalogShow)
+
 	router := NewRouter()
 	log.Fatal(http.ListenAndServe(":"+PORT, router))
 	// log.Fatal(http.ListenAndServe(":8080", router))

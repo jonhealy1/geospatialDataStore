@@ -1,0 +1,26 @@
+# Installs the current application on a Node Image.
+FROM node
+
+# Create the directory where the application will reside
+RUN mkdir /front-end
+
+# ADD the application files (needed for production)
+ADD . /front-end
+
+# Specify working directory
+WORKDIR /front-end
+
+# Copy dependency definitions
+COPY package.json /front-end
+
+# Install dependencies using npm
+RUN npm install
+#RUN npm audit fix                   
+RUN npm install -g @angular/cli
+              
+
+#Build the app
+#RUN npm run build
+
+# Run angular6-frontend app
+CMD ng serve

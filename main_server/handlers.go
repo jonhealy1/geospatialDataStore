@@ -6,12 +6,15 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"path"
 
 	"github.com/gorilla/mux"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome!")
+	p := path.Dir("./front-end/src/index.html")
+	w.Header().Set("Content-type", "text/html")
+	http.ServeFile(w, r, p)
 }
 
 func CatalogIndexTwo(w http.ResponseWriter, r *http.Request) {
