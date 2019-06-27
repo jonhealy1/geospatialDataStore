@@ -30,3 +30,21 @@ Things to know:
 -   Docker-compose: there is a docker-compose.yml file and then a dockerfile in
     the main_server folder
 -   Go: gorilla/mux and redigo libraries
+
+-----------------------------------------------------  
+web_server folder  
+
+The web_server is made using rice to bundle the html, css, and javascript into a golang application.  
+
+Tutorial: https://www.thepolyglotdeveloper.com/2017/03/bundle-html-css-javascript-served-golang-application/  
+
+To rebuild the web stuff:  
+$ rice embed.go  
+
+This builds a file called rice-box.go that handles everything automatically.
+
+$ go build  
+$ go run main.go  
+
+navigate to localhost:12345  
+
