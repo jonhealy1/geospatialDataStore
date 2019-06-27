@@ -7,7 +7,7 @@ services:
     ports:
       - "6380:6379"
 
-  my-golang-app-run:
+  main_server:
     build: main_server/
     links:
       - redis
