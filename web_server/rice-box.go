@@ -11,9 +11,9 @@ func init() {
 	// define files
 	file2 := &embedded.EmbeddedFile{
 		Filename:    "app.js",
-		FileModTime: time.Unix(1561659043, 0),
+		FileModTime: time.Unix(1561670923, 0),
 
-		Content: string("document.getElementById(\"text\").innerHTML = \"Hello World<br /><p>Created by Nic Raboy</p>\";"),
+		Content: string("document.getElementById(\"text\").innerHTML = \"Hello World<br /><p>Welcome to the geospatialDataStore</p>\";"),
 	}
 	file3 := &embedded.EmbeddedFile{
 		Filename:    "custom.css",
@@ -23,15 +23,15 @@ func init() {
 	}
 	file4 := &embedded.EmbeddedFile{
 		Filename:    "index.html",
-		FileModTime: time.Unix(1561659059, 0),
+		FileModTime: time.Unix(1561670890, 0),
 
-		Content: string("<html>\n    <head>\n        <title>The Polyglot Developer</title>\n        <link rel=\"stylesheet\" href=\"custom.css\" />\n    </head>\n    <body>\n        <div class=\"container\">\n            <p id=\"text\" class=\"text\"></p>\n        </div>\n        <script src=\"app.js\"></script>\n    </body>\n</html>\n"),
+		Content: string("<html>\n    <head>\n        <title>geospatialDataStore</title>\n        <link rel=\"stylesheet\" href=\"custom.css\" />\n    </head>\n    <body>\n        <div class=\"container\">\n            <p id=\"text\" class=\"text\"></p>\n        </div>\n        <script src=\"app.js\"></script>\n    </body>\n</html>\n"),
 	}
 
 	// define dirs
 	dir1 := &embedded.EmbeddedDir{
 		Filename:   "",
-		DirModTime: time.Unix(1561658955, 0),
+		DirModTime: time.Unix(1561678653, 0),
 		ChildFiles: []*embedded.EmbeddedFile{
 			file2, // "app.js"
 			file3, // "custom.css"
@@ -46,7 +46,7 @@ func init() {
 	// register embeddedBox
 	embedded.RegisterEmbeddedBox(`website`, &embedded.EmbeddedBox{
 		Name: `website`,
-		Time: time.Unix(1561658955, 0),
+		Time: time.Unix(1561678653, 0),
 		Dirs: map[string]*embedded.EmbeddedDir{
 			"": dir1,
 		},

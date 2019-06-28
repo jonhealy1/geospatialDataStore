@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -9,6 +10,7 @@ import (
 )
 
 func main() {
+	fmt.Println("Hello from the web server")
 	router := mux.NewRouter()
 	router.PathPrefix("/").Handler(http.FileServer(rice.MustFindBox("website").HTTPBox()))
 	log.Fatal(http.ListenAndServe(":12345", router))
