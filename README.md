@@ -22,6 +22,7 @@ main_server  | Executing Example_JSONSET for Redigo Client
 main_server  | Success: OK  
 main_server  | Catalog read from redis : main.Catalog{RId:0, Stac_version:"0.6.1", Id:"sample", Title:"Sample catalog", Description:"This is a very basic sample catalog.", Links:main.Links{Href:"http://www.example.com/sample-catalog/catalog.json", Rel:"item"}}
 
+3. navigate to localhost:12346 to see web_server output
 
 TODO: validate the json schema client side in javascript
 
@@ -39,7 +40,7 @@ The web_server is made using rice to bundle the html, css, and javascript into a
 Tutorial: https://www.thepolyglotdeveloper.com/2017/03/bundle-html-css-javascript-served-golang-application/  
 
 To rebuild the web stuff:  
-$ rice embed.go  
+$ rice embed-go  
 
 This builds a file called rice-box.go that handles everything automatically.
 

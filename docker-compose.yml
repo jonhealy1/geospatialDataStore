@@ -19,3 +19,10 @@ services:
       - .:/go/src/main_server
     ports:
       - 3030:3001
+
+  web_server:
+    build: web_server/
+    volumes:
+      - .:/go/src/web_server
+    ports:
+      - 12346:12345
