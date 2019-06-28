@@ -11,9 +11,9 @@ func init() {
 	// define files
 	file2 := &embedded.EmbeddedFile{
 		Filename:    "app.js",
-		FileModTime: time.Unix(1561691540, 0),
+		FileModTime: time.Unix(1561700548, 0),
 
-		Content: string("\r\nvar mymap = L.map('mapid').setView([51.505, -0.09], 3);\r\n\r\nL.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {\r\n    attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>',\r\n    maxZoom: 18,\r\n    id: 'mapbox.streets',\r\n    accessToken: 'pk.eyJ1Ijoib290aGViYWxsc29vIiwiYSI6ImNqeGZpbGRheDA1c3Uzc284Y20xMGh3eWoifQ.5BZj7OvzM6cn6whqRl37XQ'\r\n}).addTo(mymap);"),
+		Content: string("var mymap = L.map('mapid').setView([51.505, -0.09], 3);\r\n\r\nL.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {\r\n    attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>',\r\n    maxZoom: 18,\r\n    minZoom: 3,\r\n    id: 'mapbox.streets',\r\n    accessToken: 'pk.eyJ1Ijoib290aGViYWxsc29vIiwiYSI6ImNqeGZpbGRheDA1c3Uzc284Y20xMGh3eWoifQ.5BZj7OvzM6cn6whqRl37XQ'\r\n}).addTo(mymap);\r\n\r\nvar testArea = L.polygon([\r\n    [47.780557,-20.126939],\r\n    [48.930517,-20.301523],\r\n    [49.177531,-19.240716],\r\n    [48.035511,-19.067345],\r\n    [47.780557,-20.126939]\r\n]).addTo(mymap);\r\n\r\ntestArea.setStyle({color: 'red'});\r\ntestArea.setStyle({fillColor: '#f03'});\r\ntestArea.setStyle({fillOpacity: '0.5'});"),
 	}
 	file4 := &embedded.EmbeddedFile{
 		Filename:    "assets/planet.ico",
@@ -23,9 +23,9 @@ func init() {
 	}
 	file5 := &embedded.EmbeddedFile{
 		Filename:    "custom.css",
-		FileModTime: time.Unix(1561699021, 0),
+		FileModTime: time.Unix(1561699099, 0),
 
-		Content: string("#mapid { \r\n    height: 500px; \r\n    margin:20px 50px;\r\n}\r\n\r\n\r\n\r\nbody{\r\n    background:whitesmoke;\r\n}\r\n\r\ninput[type=\"text\"]{\r\n    box-shadow: 1px 1px 1px gray;\r\n    background-color: lightblue;\r\n    width:60%;\r\n    text-align: center;\r\n    align-content: center; \r\n    font-size: 40px; \r\n    font-weight: bold\r\n}\r\n\r\nh1:first{\r\n    font-size:100px;\r\n    text-align: center;\r\n    margin:10px;\r\n    font-family:Arial, Helvetica, sans-serif;\r\n    color: teal\r\n}"),
+		Content: string("#mapid { \r\n    height: 500px; \r\n    margin:20px 50px;\r\n}\r\n\r\nbody{\r\n    background:whitesmoke;\r\n}\r\n\r\ninput[type=\"text\"]{\r\n    box-shadow: 1px 1px 1px gray;\r\n    background-color: lightblue;\r\n    width:60%;\r\n    text-align: center;\r\n    align-content: center; \r\n    font-size: 40px; \r\n    font-weight: bold\r\n}\r\n\r\nh1:first-child{\r\n    font-size:100px;\r\n    text-align: center;\r\n    margin:10px;\r\n    font-family:Arial, Helvetica, sans-serif;\r\n    color: teal\r\n}"),
 	}
 	file7 := &embedded.EmbeddedFile{
 		Filename:    "images/layers-2x.png",
