@@ -1,14 +1,4 @@
-.container {
-    width: 400px;
-    height: 100px;
-    background-color: #009ACD;
-    margin: auto;
-}
-
-.text {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #FFFFFF;
+#mapid { 
+    height: 500px; 
+    margin:20px 50px;
 }
