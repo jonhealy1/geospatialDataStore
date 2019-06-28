@@ -11,9 +11,9 @@ func init() {
 	// define files
 	file2 := &embedded.EmbeddedFile{
 		Filename:    "app.js",
-		FileModTime: time.Unix(1561688240, 0),
+		FileModTime: time.Unix(1561691540, 0),
 
-		Content: string("document.getElementById(\"text\").innerHTML = \"Hello World<br /><p>Welcome to the geospatialDataStore</p>\";"),
+		Content: string("\r\nvar mymap = L.map('mapid').setView([51.505, -0.09], 3);\r\n\r\nL.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {\r\n    attribution: 'Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>',\r\n    maxZoom: 18,\r\n    id: 'mapbox.streets',\r\n    accessToken: 'pk.eyJ1Ijoib290aGViYWxsc29vIiwiYSI6ImNqeGZpbGRheDA1c3Uzc284Y20xMGh3eWoifQ.5BZj7OvzM6cn6whqRl37XQ'\r\n}).addTo(mymap);"),
 	}
 	file4 := &embedded.EmbeddedFile{
 		Filename:    "assets/planet.ico",
@@ -23,9 +23,9 @@ func init() {
 	}
 	file5 := &embedded.EmbeddedFile{
 		Filename:    "custom.css",
-		FileModTime: time.Unix(1561688240, 0),
+		FileModTime: time.Unix(1561699021, 0),
 
-		Content: string(".container {\r\n    width: 400px;\r\n    height: 100px;\r\n    background-color: #009ACD;\r\n    margin: auto;\r\n}\r\n\r\n.text {\r\n    position: relative;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    text-align: center;\r\n    color: #FFFFFF;\r\n}\r\n"),
+		Content: string("#mapid { \r\n    height: 500px; \r\n    margin:20px 50px;\r\n}\r\n\r\n\r\n\r\nbody{\r\n    background:whitesmoke;\r\n}\r\n\r\ninput[type=\"text\"]{\r\n    box-shadow: 1px 1px 1px gray;\r\n    background-color: lightblue;\r\n    width:60%;\r\n    text-align: center;\r\n    align-content: center; \r\n    font-size: 40px; \r\n    font-weight: bold\r\n}\r\n\r\nh1:first{\r\n    font-size:100px;\r\n    text-align: center;\r\n    margin:10px;\r\n    font-family:Arial, Helvetica, sans-serif;\r\n    color: teal\r\n}"),
 	}
 	file7 := &embedded.EmbeddedFile{
 		Filename:    "images/layers-2x.png",
@@ -59,9 +59,9 @@ func init() {
 	}
 	filec := &embedded.EmbeddedFile{
 		Filename:    "index.html",
-		FileModTime: time.Unix(1561688240, 0),
+		FileModTime: time.Unix(1561698971, 0),
 
-		Content: string("<html>\r\n    <head>\r\n        <title>geospatialDataStore</title>\r\n        <link rel=\"stylesheet\" href=\"custom.css\" />\r\n    </head>\r\n    <body>\r\n        <div class=\"container\">\r\n            <p id=\"text\" class=\"text\"></p>\r\n        </div>\r\n        <script src=\"app.js\"></script>\r\n    </body>\r\n</html>\r\n"),
+		Content: string("<html>\r\n    <head>\r\n        <title>geospatialDataStore</title>\r\n        \r\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\r\n        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>  \r\n        <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.5.1/dist/leaflet.css\"\r\n            integrity=\"sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==\"\r\n            crossorigin=\"\"/>\r\n        <link rel=\"stylesheet\" href=\"custom.css\" />\r\n        <link rel=\"icon\" type=\"image/icon\" href=\"assets/planet.ico\" />\r\n    </head>\r\n    <body>\r\n        <div class=\"container-fluid\">\r\n            <h1>GeoSpacial DataStore</h1>\r\n            <div id=\"mapid\"></div>\r\n            <div style=\"text-align:center\">\r\n            <input type=\"text\" placeholder=\"Search\" aria-label=\"Search\" />\r\n        </div>\r\n        </div>\r\n        \r\n        <script src=\"https://unpkg.com/leaflet@1.5.1/dist/leaflet.js\"\r\n            integrity=\"sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==\"\r\n            crossorigin=\"\"></script>\r\n        <script src=\"app.js\"></script>\r\n    </body>\r\n</html>\r\n"),
 	}
 	filed := &embedded.EmbeddedFile{
 		Filename:    "leaflet-src.esm.js",
