@@ -1,6 +1,7 @@
 #mapid { 
-    height: 500px; 
+    height: 75%; 
     margin:20px 50px;
+    border-style: solid;
 }
 
 body{
@@ -18,9 +19,9 @@ input[type="text"]{
 }
 
 h1:first-child{
-    font-size:100px;
+    font-size:80px;
     text-align: center;
-    margin:10px;
+    margin:5px 0 0 0;
     font-family:Arial, Helvetica, sans-serif;
     color: teal
 }
