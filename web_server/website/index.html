@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.6/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.ui-grid/3.1/ui-grid.min.css">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Barriecito&display=swap" rel="stylesheet">
 </head>
 <body ng-controller="BTorrentCtrl" ng-cloak="">
 
@@ -22,8 +23,15 @@
 <header>   
   <h1>
         <b>GeospatialDataHub</b>
-        <a href="point_cloud.html">Point Cloud</a>
+        
   </h1>
+  <h4 class="pointcloud">
+      <a href="point_cloud.html">Point Cloud Viewer |</a>
+      <a href="point_cloud.html">Torrent Client |</a>
+      <a href="point_cloud.html">Register |</a>
+      <a href="point_cloud.html">Search Data |</a>
+
+  </h4>
 </header> 
 
 
@@ -224,12 +232,13 @@
 
 
 
-<header>
+<!-- <header>
   <h1>βTorrent<span class="version"> v{{$root.version}}</span></h1>
   <div class="views" ng-show="$root.client.torrents.length == 0"><a ng-href="/#">Full</a> | <a ng-href="/download">Single Download</a> | <a ng-href="/view">Stream / View</a></div>
   <div class="aligncenter" style="width: 468px; display: inline-block;">
   </div>
-</header>
+</header> -->
+<b>-------> Torrent powered</b>
 <div id="viewer" ng-style="$root.viewerStyle"></div>
 <div id="view" ng-view></div>
 <footer>
