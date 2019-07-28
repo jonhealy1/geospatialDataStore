@@ -2,6 +2,24 @@ body {
   height: 100%;
   width: 100%; }
 
+iframe {
+  margin: 10px 25%;
+  width: 50%;
+}
+
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 75%;
+  width: 100%;
+}
+#paneDiv {
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgb(14, 13, 13);
+  color: black;
+}
+
 header, footer, .center {
   text-align: center; }
 
@@ -61,13 +79,16 @@ footer {
   opacity: .8;
   text-align: center; }
 
-.pointcloud {
+.btn-group {
+  width:50%;
   font-size: 20px;
   text-align: left;
-  margin-left: 30px;
+  margin: 10px 25%;
   background-color: white;
 }
-
+.btn-group .btn {
+ width:25%;
+}
 .spinner-icon {
   position: relative;
   top: 50%;
