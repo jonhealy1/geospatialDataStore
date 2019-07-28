@@ -26,3 +26,27 @@ services:
       - .:/go/src/web_server
     ports:
       - 12346:12345
+
+  potree:
+    image: apache
+    build: ./potree_entwine
+    # depends_on:
+    #   # - entwine_build
+    #   - entwine_serve
+    container_name: potree_web
+    restart: always
+    ports:
+      - "8085:80"
+
+  entwine_conda:
+    image: continuumio/miniconda
+    volumes:
+      - .:/code2/geoHub
+    command: >
+      bash -c " conda install nodejs -y
+      && npm install http-server -g
+      && http-server code2/geoHub/entwine/entwine -p 8089 --cors"
+    ports:
+      - "8111:8089"
+
+  
