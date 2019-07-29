@@ -5,7 +5,7 @@ services:
   redis:
     image: redislabs/rejson
     ports:
-      - "6380:6379"
+      - "6382:6379"
 
   main_server:
     build: main_server/
@@ -33,7 +33,7 @@ services:
     # depends_on:
     #   # - entwine_build
     #   - entwine_serve
-    container_name: potree_web
+    # container_name: potree_web
     restart: always
     ports:
       - "8085:80"
