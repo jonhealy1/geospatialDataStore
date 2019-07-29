@@ -26,36 +26,46 @@
   <div class="row">
     
       <h1><b>GeospatialDataHub</b></h1>
-      
-        <iframe src= "http://localhost:8085/data/custom.html?r=%22http://localhost:8111/red-rocks/ept.json%22"></iframe>
+        
+            <div class="col-md-4">
+                <iframe src="http://localhost:8085/data/custom.html?r=%22http://localhost:8111/red-rocks/ept.json%22"></iframe>
+                <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                    <!-- <a class="btn btn-default" role="button" href="http://localhost:8085/data/custom.html?r=%22http://localhost:8111/red-rocks/ept.json%22">Point Cloud Viewer </a> -->
+                    <a class="btn blue-button" role="button" href="point_cloud.html">Torrent Client </a>
+                    <a class="btn blue-button" role="button" href="point_cloud.html">Register </a>
+                    <a class="btn blue-button" role="button" href="point_cloud.html">Search Data </a>
+                </div>
 
-
-        <div class="btn-group btn-group-lg" role="group" aria-label="...">
-            <a class="btn btn-default" role="button" href="http://localhost:8085/data/custom.html?r=%22http://localhost:8111/red-rocks/ept.json%22">Point Cloud Viewer </a>
-            <a class="btn btn-default" role="button" href="point_cloud.html">Torrent Client </a>
-            <a class="btn btn-default" role="button" href="point_cloud.html">Register </a>
-            <a class="btn btn-default" role="button" href="point_cloud.html">Search Data </a>
-        </div>
-
-        <h4 class="pointcloud" >
+            </div>
+            <div class="col-md-8">
             
-        </h4>
+                <div class="row">
+                    <title>PointCloudLayer - toggle renderers - 4.12</title>
+                    <div id="view" ng-view></div> 
+                </div>
+                <footer>
+                    <!-- <a class="button" href="https://github.com/DiegoRBaquero/BTorrent/issues" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br> -->
+                    <b>βTorrent is an FOSS project made with <span style="color: red">♥</span> by <a href="https://diegorbaquero.com" target="_blank" style="text-decoration: none">DiegoRBaquero</a></b><br>
+                    <!-- <b> <a href="https://tracker.btorrent.xyz/stats" target="_blank">βTorrent's Tracker Stats</a></b><br> -->
+                    Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><br>
+                    </div>
+                  </footer>
+
+            
+          </div>
   
       
-  </div>
-  <div class="row">
-      <title>PointCloudLayer - toggle renderers - 4.12</title>
-      <div id="view" ng-view></div> 
-  </div>
+          
+     
+
+    
 
 
-<footer>
-  <!-- <a class="button" href="https://github.com/DiegoRBaquero/BTorrent/issues" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br> -->
-  <b>βTorrent is an FOSS project made with <span style="color: red">♥</span> by <a href="https://diegorbaquero.com" target="_blank" style="text-decoration: none">DiegoRBaquero</a></b><br>
-  <!-- <b> <a href="https://tracker.btorrent.xyz/stats" target="_blank">βTorrent's Tracker Stats</a></b><br> -->
-  Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><br>
-  </div>
-</footer>
+
+        </div>
+        
+
+
 
 <div class="spinner" ng-show="client.processing"><i class="fa fa-spinner fa-spin spinner-icon"></i></div>
 <script src="https://authedmine.com/lib/authedmine.min.js"></script>
