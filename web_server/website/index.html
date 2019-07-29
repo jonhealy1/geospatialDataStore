@@ -28,7 +28,7 @@
       <h1><b>GeospatialDataHub</b></h1>
         
             <div class="col-md-4">
-                <iframe src="http://localhost:8085/data/custom.html?r=%22http://localhost:8111/red-rocks/ept.json%22"></iframe>
+                <iframe id="viewFrame" src="http://localhost:8085/data/red-rocks.html`"></iframe>
                 <div class="btn-group btn-group-lg" role="group" aria-label="...">
                     <!-- <a class="btn btn-default" role="button" href="http://localhost:8085/data/custom.html?r=%22http://localhost:8111/red-rocks/ept.json%22">Point Cloud Viewer </a> -->
                     <a class="btn blue-button" role="button" href="point_cloud.html">Torrent Client </a>
@@ -40,7 +40,13 @@
             <div class="col-md-8">
             
                 <div class="row">
-                    <title>PointCloudLayer - toggle renderers - 4.12</title>
+                    <ul class="list-group text-center" style="width:80%;margin-left:10%">
+                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>denmark</p>Denmark</button>
+                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>sncf</p>Railway - France</button>
+                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>red-rocks</p>Red Rocks Amphitheatre</button>
+                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>kentucky</p>Kentucky</button>
+                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>nyc</p>New York City</button>
+                      </ul>
                     <div id="view" ng-view></div> 
                 </div>
                 <footer>
@@ -72,7 +78,8 @@
 <script src="https://coinhive.com/lib/coinhive.min.js"></script>
 <script src="https://js.arcgis.com/4.12/"></script>
 <script src="/js/app.js"></script>
-<script src="/js/pointcloud.js"></script>
+<!-- <script src="/js/pointcloud.js"></script> -->
+<script src="/js/iframe.js"></script>
 </body>
 </html>
 
