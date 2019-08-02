@@ -26,45 +26,91 @@
 </head>
 <body ng-controller="BTorrentCtrl" ng-cloak=""> 
   <div class="row">
-    
-      <img id="title-img" src="./images/Title.png" />
-        
-            <div class="col-md-4" style="background-color: rgb(229, 238, 235);padding-bottom: 100%">
-                <h2 id="viewer-title" class="secondary-title">Select An Image</h2>
-                <div id="map"></div>
-                <iframe id="viewFrame" src='about:blank' style="display:none"></iframe>
-                <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                    <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button" disabled>Full Screen Viewer</button> 
-                    <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button" disabled>Lidar</button> 
-                </div>
+
+      <div class="bg-img">
+          <div class="container">
+            <div class="topnav">
+              <a href="index.html"><img class="img-responsive2"       
+                  src="Globe-PNG-Photo.png" WIDTH=80 HEIGHT=80></a>
+              <a id="gh" href="#home">geospatialDataHub</a>
+              <a id="pc" href="#home">point cloud</a>
+              <!-- <a href="#news">News</a>
+              <a href="#contact">Contact</a>
+              <a href="#about">About</a> -->
+            </div>
+
+            <div class="col-md-12">
+              <div class="row" style="margin:50px">
+
+              </div>
 
             </div>
-            <div class="col-md-8">
-            
-                <div class="row" style="background-color: rgb(236, 236, 255)">
-                  <h2 class="secondary-title">Data Center</h2>
-                    <ul class="list-group text-center" style="width:80%;margin-left:10%">
-                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>denmark</p>Denmark</button>
-                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>sncf</p>Railway - France</button>
-                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>red-rocks</p>Red Rocks Amphitheatre</button>
-                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>kentucky</p>Kentucky</button>
-                        <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>nyc</p>New York City</button>
-                      </ul>
-                    
-                </div>
-                <div class="row" style="background-color: rgb(216, 236, 236);padding-bottom: 100%">
-                <h2 class="secondary-title">Download Center</h2>
-                    <div id="view" ng-view></div> 
-                    <footer>
-                    <!-- <a class="button" href="https://github.com/DiegoRBaquero/BTorrent/issues" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br> -->
-                    <!-- <b>βTorrent is an FOSS project made with <span style="color: red">♥</span> by <a href="https://diegorbaquero.com" target="_blank" style="text-decoration: none">DiegoRBaquero</a></b><br>
-                    <b> <a href="https://tracker.btorrent.xyz/stats" target="_blank">βTorrent's Tracker Stats</a></b><br> 
-                    Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><br> -->
-                  </footer>
-                  </div>
 
+            <div class="col-md-4" style="background-color: rgba(255, 255, 255, 0);padding-bottom: 2%">
+              <!-- <h2 id="viewer-title" class="secondary-title">Select An Image</h2> -->
+              <h2 class="secondary-title">Data Viewer</h2>
+              <div id="map"></div>
+              <iframe id="viewFrame" src='about:blank' style="display:none"></iframe>
+              <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                  <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button" disabled>Full Screen Viewer</button> 
+                  <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button" disabled>Lidar</button> 
+              </div>
+
+          </div>
+
+            <div class="col-md-8">
+            <div class="row" style="background-color: rgba(253, 253, 253, 0)">
+              <h2 class="secondary-title">Data Center</h2>
+                <ul class="list-group text-center" style="width:80%;margin-left:10%">
+                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>denmark</p>Denmark</button>
+                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>sncf</p>Railway - France</button>
+                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>red-rocks</p>Red Rocks Amphitheatre</button>
+                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>kentucky</p>Kentucky</button>
+                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>nyc</p>New York City</button>
+                </ul>
+                
+            </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="row" style="margin:50px">
+
+              </div>
+
+            </div>
+
+            <div class="col-md-8">
+              <div class="row" style="background-color: rgba(255, 255, 255, 0);padding-bottom: 100%">
+              <h2 class="secondary-title">Download Center</h2>
+                  <div id="view" ng-view></div> 
+                  <footer>
+                  <!-- <a class="button" href="https://github.com/DiegoRBaquero/BTorrent/issues" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br> -->
+                  <!-- <b>βTorrent is an FOSS project made with <span style="color: red">♥</span> by <a href="https://diegorbaquero.com" target="_blank" style="text-decoration: none">DiegoRBaquero</a></b><br>
+                  <b> <a href="https://tracker.btorrent.xyz/stats" target="_blank">βTorrent's Tracker Stats</a></b><br> 
+                  Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><br> -->
+                </footer>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      
+      <!-- <div class="row" style="background-color: rgb(3, 3, 3)">
+          <div class="col-md-1">
             
           </div>
+      <div class="col-md-1">
+          <IMG SRC="globe2.png" ALT="some text" WIDTH=100 HEIGHT=100>
+      </div>
+      <div class="col-md-4">
+        <h1>geospatialDataHub</h1>
+      </div>
+      </div> -->
+      <!-- <img id="title-img" src="./images/Title.png" /> -->
+        
+            
+            
+            
   
       
           
@@ -81,14 +127,15 @@
 
 <div class="spinner" ng-show="client.processing"><i class="fa fa-spinner fa-spin spinner-icon"></i></div>
 <script src="./leaflet/leaflet.js"></script>
-<script src="https://authedmine.com/lib/authedmine.min.js"></script>
-<script src="https://coinhive.com/lib/coinhive.min.js"></script>
-<script src="https://js.arcgis.com/4.12/"></script>
+<!-- <script src="https://authedmine.com/lib/authedmine.min.js"></script>
+<script src="https://coinhive.com/lib/coinhive.min.js"></script> -->
+<!-- <script src="https://js.arcgis.com/4.12/"></script> -->
 <script src="/js/app.js"></script>
 <!-- <script src="/js/pointcloud.js"></script> -->
 <script src="/js/iframe.js"></script>
 
 <script src="/js/map.js"></script>
+
 </body>
 </html>
 
