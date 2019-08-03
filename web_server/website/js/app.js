@@ -110,6 +110,7 @@ app.controller('BTorrentCtrl', ['$scope', '$rootScope', '$http', '$log', '$locat
     }
   }
   $rootScope.openTorrentFile = function (file) {
+    //file = LasVegas.torrent
     if (file != null) {
       dbg(`Adding torrent file ${file.name}`)
       $rootScope.client.processing = true
