@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	rejson "github.com/nitishm/go-rejson"
 
@@ -24,6 +25,11 @@ import (
 func main() {
 
 	// JSON SET
+	fmt.Printf("Current Unix Time: %v\n", time.Now().Unix())
+
+	time.Sleep(2 * time.Second)
+
+	fmt.Printf("Current Unix Time: %v\n", time.Now().Unix())
 
 	redisurl := os.Getenv("REDIS_URL")
 	var addr = flag.String("Server", redisurl, "Redis server address")

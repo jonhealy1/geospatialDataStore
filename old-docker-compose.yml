@@ -6,20 +6,9 @@ services:
     image: redislabs/rejson
     ports:
       - "6382:6379"
-    networks:
-      - webnet
 
   main_server:
-    image: geospatialdatastore_main_server:version1
     build: main_server/
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
     links:
       - redis
     depends_on:
@@ -30,9 +19,6 @@ services:
       - .:/go/src/main_server
     ports:
       - 3030:3001
-    restart: always
-    networks:
-      - webnet
 
   web_server:
     build: web_server/
@@ -40,8 +26,6 @@ services:
       - .:/go/src/web_server
     ports:
       - 12346:12345
-    networks:
-      - webnet
 
   potree:
     image: apache
@@ -53,8 +37,6 @@ services:
     restart: always
     ports:
       - "8085:80"
-    networks:
-      - webnet
 
   entwine_conda:
     image: continuumio/miniconda
@@ -66,10 +48,5 @@ services:
       && http-server code2/geoHub/entwine/entwine -p 8089 --cors"
     ports:
       - "8111:8089"
-    networks:
-      - webnet
-
-networks:
-  webnet:
 
   
