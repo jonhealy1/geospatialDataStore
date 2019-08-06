@@ -1,4 +1,10 @@
 var global_current_lidar = ""
+var global_host_name = ""
+
+$(document).ready(function(){
+    global_host_name = window.location.hostname;
+})
+
 
 function lidarLoad(item){
     $('#full-screen-btn').attr('disabled', false)
@@ -6,11 +12,11 @@ function lidarLoad(item){
     global_current_lidar = $(item).find("p").text()
     // set
     if(global_current_lidar == 'hanover'){
-        $('#viewFrame').attr('src', `http://localhost:8085/data/hanover.html`)
+        $('#viewFrame').attr('src', `http://${global_host_name}:8085/data/hanover.html`)
     } else if(global_current_lidar == 'beer-caves') {
-        $('#viewFrame').attr('src', `http://localhost:8085/data/beer-caves.html`)
+        $('#viewFrame').attr('src', `http://${global_host_name}:8085/data/beer-caves.html`)
     }else{
-        $('#viewFrame').attr('src', `http://localhost:8085/data/view.html?r="http://localhost:8111/${global_current_lidar}"`)
+        $('#viewFrame').attr('src', `http://${global_host_name}:8085/data/view.html?r="http://${global_host_name}:8111/${global_current_lidar}"`)
     }
     //load
     $( '#viewFrame' ).attr( 'src', function ( i, val ) { return val; });
@@ -22,11 +28,11 @@ function lidarLoad(item){
 
 function fullscreenviewer(b) {
     if(global_current_lidar == 'hanover'){
-        var win = window.open(`http://localhost:8085/data/hanover.html`, '_blank')
+        var win = window.open(`http://${global_host_name}:8085/data/hanover.html`, '_blank')
     } else if(global_current_lidar == 'beer-caves'){
-        var win = window.open(`http://localhost:8085/data/beer-caves.html`, '_blank')
+        var win = window.open(`http://${global_host_name}:8085/data/beer-caves.html`, '_blank')
     }else{
-        var win = window.open(`http://localhost:8085/data/view.html?r="http://localhost:8111/${global_current_lidar}"`, '_blank')
+        var win = window.open(`http://${global_host_name}:8085/data/view.html?r="http://${global_host_name}:8111/${global_current_lidar}"`, '_blank')
     }
     win.focus();
 }
