@@ -9,6 +9,46 @@
   <meta name="author" content="Diego Rodríguez Baquero - DiegoRBaquero"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="trafficjunky-site-verification" content="rs9noatvt" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+
   <script
       src="https://cdn.jsdelivr.net/g/webtorrent@0,momentjs@2,angularjs@1.5(angular.min.js+angular-route.min.js+angular-sanitize.min.js),angular.ui-grid@3.1,angular.ng-notify@0.8,angular.file-upload@12"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/g/normalize@3.0,skeleton@2.0,angular.ng-notify@0.8(ng-notify.min.css)">
@@ -23,6 +63,7 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  
+  
 </head>
 <body ng-controller="BTorrentCtrl" ng-cloak=""> 
   <div class="row">
@@ -55,19 +96,210 @@
                   <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button" disabled>Full Screen Viewer</button> 
                   <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button" disabled>Lidar</button> 
               </div>
-
-          </div>
+            </div>
+  
 
             <div class="col-md-4">
             <div class="row" style="background-color: rgba(253, 253, 253, 0)">
+
+                	
               <h2 class="secondary-title">Data Center</h2>
                 <ul class="list-group text-center" style="width:80%;margin-left:8%">
-                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>lasvegas</p>Las Vegas (UVIC Hyperspectral Lab)</button>
-                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>nrcan170</p>Ashcroft (UVIC Hyperspectral Lab)</button>
-                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>red-rocks</p>Red Rocks Ampitheatre (Potree)</button>
-                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>autzen</p>Autzen (Potree)</button>
-                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>hanover</p>Hanover (Potree)</button>
-                    <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>beer-caves</p>Iowa City Beer Caves (UIowa)</button>
+            	<div class="dropdown">
+                <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>lasvegas</p>Las Vegas (UVIC Hyperspectral Lab)</button>
+                <div class="dropdown-content">
+                    <table style="width:100%">
+					  <tr>
+					    <th>Property</th>
+					    <th>Value</th> 
+					  </tr>
+					  <tr>
+					    <td>Bounds</td>
+					    <td>652998.0, 3994998.0, 294.0, 654002.0, 3996002.0, 1298.0</td>
+					    </tr>
+					  <tr>
+					    <td>Datatype</td>
+					    <td>laszip</td>
+					     </tr>
+					   <tr>
+					    <td>HierarchyType</td>
+					    <td>json</td>
+					     </tr>
+					    <tr>
+					    <td>Points</td>
+					    <td>5414370</td>
+					     </tr>
+					     <tr>
+					    <td>Span</td>
+					    <td>128</td>
+					     </tr>
+					     <tr>
+					    <td>Version</td>
+					    <td>1.0.0</td>
+					     </tr>
+					 </table>
+						</div>
+					</div>	
+				<div class="dropdown">	
+                <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>nrcan170</p>Ashcroft (UVIC Hyperspectral Lab)</button>
+                <div class="dropdown-content">
+    				<table style="width:100%">
+					<tr>
+					    <th>Property</th>
+					    <th>Value</th> 
+					  </tr>
+					  <tr>
+					    <td>Bounds</td>
+					    <td>619840.0, 5611256.0, 66.0, 620296.0, 5611712.0, 522.0</td>
+					    </tr>
+					  <tr>
+					    <td>Datatype</td>
+					    <td>laszip</td>
+					     </tr>
+					   <tr>
+					    <td>HierarchyType</td>
+					    <td>json</td>
+					     </tr>
+					    <tr>
+					    <td>Points</td>
+					    <td>57013646</td>
+					     </tr>
+					     <tr>
+					    <td>Span</td>
+					    <td>128</td>
+					     </tr>
+					     <tr>
+					    <td>Version</td>
+					    <td>1.0.0</td>
+					     </tr>
+					 </table>
+						</div>
+						</div>
+				<div class="dropdown">	
+                <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>red-rocks</p>Red Rocks Ampitheatre (Potree)</button>
+                <div class="dropdown-content">
+    				<table style="width:100%">
+					   <tr>
+					    <th>Property</th>
+					    <th>Value</th> 
+					  </tr>
+					  <tr>
+					    <td>Bounds</td>
+					    <td>481968.0, 4390186.0, 1493.0, 482856.0, 4391074.0, 2381.0</td>
+					    </tr>
+					  <tr>
+					    <td>Datatype</td>
+					    <td>laszip</td>
+					     </tr>
+					   <tr>
+					    <td>HierarchyType</td>
+					    <td>json</td>
+					     </tr>
+					    <tr>
+					    <td>Points</td>
+					    <td>4004326</td>
+					     </tr>
+					     <tr>
+					    <td>Span</td>
+					    <td>128</td>
+					     </tr>
+					     <tr>
+					    <td>Version</td>
+					    <td>1.0.0</td>
+					     </tr>
+					 
+					 </table>
+						</div>
+						</div>
+				<div class="dropdown">	
+                <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>autzen</p>Autzen (Potree)</button>
+                <div class="dropdown-content">
+    				<table style="width:100%">
+					  <tr>
+					    <th>Property</th>
+					    <th>Value</th> 
+					  </tr>
+					  <tr>
+					    <td>Bounds</td>
+					    <td>634962.0, 848881.0, -1818.0, 639620.0, 853539.0, 2840.0</td>
+					    </tr>
+					  <tr>
+					    <td>Datatype</td>
+					    <td>laszip</td>
+					     </tr>
+					   <tr>
+					    <td>HierarchyType</td>
+					    <td>json</td>
+					     </tr>
+					    <tr>
+					    <td>Points</td>
+					    <td>10653336</td>
+					     </tr>
+					     <tr>
+					    <td>Span</td>
+					    <td>128</td>
+					     </tr>
+					     <tr>
+					    <td>Version</td>
+					    <td>1.0.0</td>
+					     </tr>
+					 </table>
+				</div>
+				</div>
+				<div class="dropdown">	
+                <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>hanover</p>Hanover (Potree)</button>
+                <div class="dropdown-content">
+    				<table style="width:100%">
+					   <tr>
+					    <th>Property</th>
+					    <th>Value</th> 
+					  </tr>
+					  <tr>
+					    <td>Bounds</td>
+					    <td>634962.0, 848881.0, -1818.0, 639620.0, 853539.0, 2840.0</td>
+					    </tr>
+					  <tr>
+					    <td>Datatype</td>
+					    <td>laszip</td>
+					     </tr>
+					   <tr>
+					    <td>HierarchyType</td>
+					    <td>json</td>
+					     </tr>
+					    <tr>
+					    <td>Points</td>
+					    <td>10653336</td>
+					     </tr>
+					     <tr>
+					    <td>Span</td>
+					    <td>128</td>
+					     </tr>
+					     <tr>
+					    <td>Version</td>
+					    <td>1.0.0</td>
+					     </tr>
+					 </table>
+				</div>
+				</div>
+				<div class="dropdown">	
+                <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>beer-caves</p>Iowa City Beer Caves (UIowa)</button>
+                <div class="dropdown-content">
+    				<table style="width:100%">
+					  <tr>
+					    <th>Property</th>
+					    <th>Value</th> 
+					  </tr>
+					  <tr>
+					    <td>Bounds</td>
+					    <td>652998.o, 3993998.0, 296.0, 654002.0, 995002.0, 1300.0</td>
+					    </tr>
+					  <tr>
+					    <td>Datatype</td>
+					    <td>laszip</td>
+					     </tr>
+					 </table>
+						</div>
+						</div>
                 </ul>
                 
             </div>
