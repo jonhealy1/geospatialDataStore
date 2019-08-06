@@ -10,8 +10,8 @@ services:
       - webnet
 
   main_server:
-    image: geospatialdatastore_main_server:version1
-    build: main_server/
+    image: hyephive/geospatialdatastore_main_server
+    # build: main_server/
     deploy:
       replicas: 5
       resources:
@@ -26,8 +26,8 @@ services:
       - redis
     environment:
       REDIS_URL: redis:6379
-    volumes:
-      - .:/go/src/main_server
+    # volumes:
+    #   - .:/go/src/main_server
     ports:
       - 3030:3001
     restart: always
@@ -35,17 +35,34 @@ services:
       - webnet
 
   web_server:
-    build: web_server/
-    volumes:
-      - .:/go/src/web_server
+    image: hyephive/geospatialdatastore_web_server
+    # build: web_server/
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    # volumes:
+    #   - .:/go/src/web_server
     ports:
       - 12346:12345
     networks:
       - webnet
 
   potree:
-    image: apache
+    image: bitnami/apache
     build: ./potree_entwine
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
     # depends_on:
     #   # - entwine_build
     #   - entwine_serve
@@ -58,12 +75,21 @@ services:
 
   entwine_conda:
     image: continuumio/miniconda
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+
+      restart_policy:
+        condition: on-failure
     volumes:
-      - .:/code2/geoHub
+      - .:/go/src/geospatialDataStore
     command: >
       bash -c " conda install nodejs -y
       && npm install http-server -g
-      && http-server code2/geoHub/entwine/entwine -p 8089 --cors"
+      && http-server go/src/geospatialDataStore/entwine/entwine -p 8089 --cors"
     ports:
       - "8111:8089"
     networks:
