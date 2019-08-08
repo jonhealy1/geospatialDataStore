@@ -138,6 +138,16 @@ input[type="button"].button-danger:focus {
   background-color: #C43E3A;
   border-color: #C43E3A; }
 
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+}
+
   #viewDiv {
     background-color: white;
     padding: 0;
