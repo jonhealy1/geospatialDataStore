@@ -49,12 +49,13 @@
             <div class="col-md-4" style="background-color: rgba(255, 255, 255, 0);padding-bottom: 2%">
               <!-- <h2 id="viewer-title" class="secondary-title">Select An Image</h2> -->
               <h2 class="secondary-title">Data Viewer</h2>
-              <div id="map"></div>
-              <iframe id="viewFrame" src='about:blank' style="display:none"></iframe>
               <div class="btn-group2" role="group" aria-label="...">
                   <button onclick="fullscreenviewer(this)" class="btn-group2" disabled>Full Screen Viewer</button> 
                   <button onclick="switcher(this)" class="btn-group2" disabled>Lidar</button> 
               </div>
+              <div id="map"></div>
+              <iframe id="viewFrame" src='about:blank' style="display:none"></iframe>
+              
 
           </div>
 
@@ -91,15 +92,15 @@
                 </div> -->
                 <div class="two columns download-button">
                   <ul>
-                    <button ng-click="addMagnetLasVegas()" class="button" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i>   LasVegas_AdjustedLasFiles.torrent (782 MB)</button>
-                    <button ng-click="addMagnetAshcroft()" class="button" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i>   NRCAN-Ashcroft_2018_delivery.torrent (1.0 GB)</button>
+                    <button ng-click="addMagnetLasVegas()" class="button2" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i>   LasVegas_AdjustedLasFiles.torrent (782 MB)</button>
+                    <button ng-click="addMagnetAshcroft()" class="button2" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i>   NRCAN-Ashcroft_2018_delivery.torrent (1.0 GB)</button>
                   </ul>
                </div>
             </div>
             </div>
 
             <div class="col-md-8">
-              <div class="row" style="margin:50px">
+              <div class="row" style="margin:30px">
 
               </div>
 

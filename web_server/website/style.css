@@ -14,9 +14,11 @@ footer {
   margin-top: 10px; }
 
   .btn-group2 button {
+    margin-left: 50px;
     background-color: #4CAF50; /* Green background */
     border: 1px solid green; /* Green border */
     color: white; /* White text */
+    opacity: .6;
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
@@ -55,7 +57,7 @@ footer {
   .button {
     display: inline-block;
     border-radius: 4px;
-    background-color: #1d3ef7;
+    background-color: #8f8f8f;
     border: none;
     color: #FFFFFF;
     text-align: left;
@@ -89,6 +91,47 @@ footer {
   }
   
   .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .button2 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #859cff;
+    border: none;
+    color: #FFFFFF;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 20px;
+    width: 430px;
+    transition: all 0.5s;
+    opacity: .6;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button2 span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button2 span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button2:hover span {
+    padding-right: 25px;
+  }
+  
+  .button2:hover span:after {
     opacity: 1;
     right: 0;
   }
