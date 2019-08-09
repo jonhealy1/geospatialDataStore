@@ -47,6 +47,44 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.button {
+  border-radius: 4px;
+  border: none;
+ 
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 </style>
 
   <script
@@ -93,8 +131,8 @@
               <div id="map"></div>
               <iframe id="viewFrame" src='about:blank' style="display:none"></iframe>
               <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                  <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button" disabled>Full Screen Viewer</button> 
-                  <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button" disabled>Lidar</button> 
+                  <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button button" disabled><span>Full Screen Viewer</span></button> 
+                  <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button button" disabled><span>Lidar</span></button> 
               </div>
             </div>
   
@@ -104,8 +142,8 @@
 
                 	
               <h2 class="secondary-title">Data Center</h2>
-			  <div class="dropdown">
-				<button class="btn-default data-center-btn" onclick="lidarLoad(this)" ><p hidden>autzen</p>Autzen (Potree)</button>
+               <div class="dropdown">
+				<button class="btn-default data-center-btn button" onclick="lidarLoad(this)" ><p hidden>autzen</p><span>Autzen (Potree)</span></button>
                 <div class="dropdown-content">
     				<table style="width:100%">
 					  <tr>
@@ -140,7 +178,7 @@
 				</div>
 				</div>	
             	<div class="dropdown">
-                <button class="btn-default data-center-btn" onclick="lidarLoad(this)" ><p hidden>lasvegas</p>Las Vegas (UVIC Hyperspectral Lab)</button>
+                <button class="btn-default data-center-btn button" onclick="lidarLoad(this)" ><p hidden>lasvegas</p><span>Las Vegas (UVIC Hyperspectral Lab)</span></button>
                		 <div class="dropdown-content">
                     	<table style="width:100%">
 					  <tr>
@@ -176,7 +214,7 @@
 				</div>
 
 				<div class="dropdown">	
-                <button class="btn-default data-center-btn" onclick="lidarLoad(this)" ><p hidden>nrcan170</p>Ashcroft (UVIC Hyperspectral Lab)</button>
+                <button class="btn-default data-center-btn button" onclick="lidarLoad(this)" ><p hidden>nrcan170</p><span>Ashcroft (UVIC Hyperspectral Lab)</span></button>
                 <div class="dropdown-content">
     				<table style="width:100%">
 					<tr>
@@ -211,7 +249,7 @@
 						</div>
 						</div>
 				<div class="dropdown">	
-                <button class="btn-default data-center-btn" onclick="lidarLoad(this)" ><p hidden>red-rocks</p>Red Rocks Ampitheatre (Potree)</button>
+                <button class="btn-default data-center-btn button" onclick="lidarLoad(this)" ><p hidden>red-rocks</p><span>Red Rocks Ampitheatre (Potree)</span></button>
                 <div class="dropdown-content">
     				<table style="width:100%">
 					   <tr>
@@ -246,7 +284,7 @@
 						</div>
 						</div>            
 				<div class="dropdown">	
-                <button class="btn-default data-center-btn" onclick="lidarLoad(this)" ><p hidden>hanover</p>Hanover (Potree)</button>
+                <button class="btn-default data-center-btn button" onclick="lidarLoad(this)" ><p hidden>hanover</p><span>Hanover (Potree)</span></button>
                 <div class="dropdown-content">
     				<table style="width:100%">
 					   <tr>
@@ -281,7 +319,7 @@
 				</div>
 				</div>
 				<div class="dropdown">	
-                <button class="btn-default data-center-btn" onclick="lidarLoad(this)" ><p hidden>beer-caves</p>Iowa City Beer Caves (UIowa)</button>
+                <button class="btn-default data-center-btn button" onclick="lidarLoad(this)" ><p hidden>beer-caves</p><span>Iowa City Beer Caves (UIowa)</span></button>
                 <div class="dropdown-content">
     				<table style="width:100%">
 					  <tr>
@@ -329,7 +367,7 @@
                     <input class="u-full-width" type="text" placeholder="magnet, hash or http(s) .torrent" ng-model="torrentInput" ng-disabled="$root.disabled"/>
                 </div> -->
                 <div class="two columns download-button">
-                    <button ng-click="addMagnetLasVegas()" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i> </button>
+                    <button ng-click="addMagnetLasVegas()" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download "></i> </button>
                     <button ng-click="addMagnetAshcroft()" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i> </button>
                 </div>
             </div>
