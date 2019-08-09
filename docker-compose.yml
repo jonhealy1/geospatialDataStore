@@ -2,43 +2,49 @@ version: '3'
 
 services:
 
-  redis:
-    image: redislabs/rejson
-    ports:
-      - "6382:6379"
-    networks:
-      - webnet
+  # redis:
+  #   image: redislabs/rejson
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - "/home/docker/data:/data"
+  #   deploy:
+  #     placement:
+  #       constraints: [node.role == manager]
+  #   command: redis-server --appendonly yes
+  #   networks:
+  #     - webnet
 
-  main_server:
-    image: hyephive/geospatialdatastore_main_server
-    # build: main_server/
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
-    links:
-      - redis
-    depends_on:
-      - redis
-    environment:
-      REDIS_URL: redis:6379
-    # volumes:
-    #   - .:/go/src/main_server
-    ports:
-      - 3030:3001
-    restart: always
-    networks:
-      - webnet
+  # main_server:
+  #   image: hyephive/geospatialdatastore_main_server
+  #   # build: main_server/
+  #   deploy:
+  #     replicas: 5
+  #     resources:
+  #       limits:
+  #         cpus: "0.1"
+  #         memory: 50M
+  #     restart_policy:
+  #       condition: on-failure
+  #   links:
+  #     - redis
+  #   depends_on:
+  #     - redis
+  #   environment:
+  #     REDIS_URL: redis:6379
+  #   # volumes:
+  #   #   - .:/go/src/main_server
+  #   ports:
+  #     - 3030:3001
+  #   restart: always
+  #   networks:
+  #     - webnet
 
   web_server:
     image: hyephive/geospatialdatastore_web_server
     # build: web_server/
     deploy:
-      replicas: 5
+      replicas: 1
       resources:
         limits:
           cpus: "0.1"
@@ -53,49 +59,53 @@ services:
       - webnet
 
   potree:
-    image: bitnami/apache
-    build: ./potree_entwine
+    image: 00theballs00/potree_entwine
+    # build: ./potree_entwine
     deploy:
-      replicas: 5
+      replicas: 1
       resources:
         limits:
           cpus: "0.1"
           memory: 50M
       restart_policy:
         condition: on-failure
-    # depends_on:
-    #   # - entwine_build
-    #   - entwine_serve
-    # container_name: potree_web
-    restart: always
+    # restart: always
     ports:
       - "8085:80"
     networks:
       - webnet
 
   entwine_conda:
-    image: continuumio/miniconda
+    image: 00theballs00/entwine_conda
+    # build: ./entwine
     deploy:
-      replicas: 5
+      replicas: 1
       resources:
         limits:
           cpus: "0.1"
           memory: 50M
-
       restart_policy:
         condition: on-failure
-    volumes:
-      - .:/go/src/geospatialDataStore
-    command: >
-      bash -c " conda install nodejs -y
-      && npm install http-server -g
-      && http-server go/src/geospatialDataStore/entwine/entwine -p 8089 --cors"
+    # volumes:
+    #   - .:/go/src/geospatialDataStore
+    depends_on:
+      - potree
     ports:
       - "8111:8089"
     networks:
       - webnet
 
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
 networks:
   webnet:
-
-  
