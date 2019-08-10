@@ -40,7 +40,7 @@ function fullscreenviewer(b) {
 function switcher(b){
     console.log($(b).text())
     var this_text = $(b).text()
-    if(this_text == 'Lidar'){
+    if(this_text == 'LiDAR'){
         $('#map').hide()
         $('#viewFrame').show()
         $(b).text(function(){
@@ -50,7 +50,7 @@ function switcher(b){
         $('#viewFrame').hide()
         $('#map').show()
         $(b).text(function(){
-            return 'Lidar'
+            return 'LiDAR'
         })
     }
 }

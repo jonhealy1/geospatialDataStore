@@ -49,25 +49,40 @@
             <div class="col-md-4" style="background-color: rgba(255, 255, 255, 0);padding-bottom: 2%">
               <!-- <h2 id="viewer-title" class="secondary-title">Select An Image</h2> -->
               <h2 class="secondary-title">Data Viewer</h2>
+              
+              <div class="btn-group2" role="group" aria-label="...">
+                <button id="full-screen-btn" onclick="fullscreenviewer(this)" disabled>Full Screen Viewer</button> 
+                <button id="switcher-btn" onclick="switcher(this)" disabled>LiDAR</button> 
+              </div>
               <div id="map"></div>
               <iframe id="viewFrame" src='about:blank' style="display:none"></iframe>
-              <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                  <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button" disabled>Full Screen Viewer</button> 
-                  <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button" disabled>Lidar</button> 
-              </div>
+              <!-- <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                <button id="full-screen-btn" onclick="fullscreenviewer(this)" class="btn blue-button" disabled>Full Screen Viewer</button> 
+                <button id="switcher-btn" onclick="switcher(this)" class="btn blue-button" disabled>Lidar</button> 
+              </div> -->
+              
 
           </div>
 
             <div class="col-md-4">
             <div class="row" style="background-color: rgba(253, 253, 253, 0)">
               <h2 class="secondary-title">Data Center</h2>
-                <ul class="list-group text-center" style="width:80%;margin-left:8%">
+                <!-- <ul class="list-group text-center" style="width:80%;margin-left:8%">
                     <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>lasvegas</p>Las Vegas (UVIC Hyperspectral Lab)</button>
                     <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>nrcan170</p>Ashcroft (UVIC Hyperspectral Lab)</button>
                     <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>red-rocks</p>Red Rocks Ampitheatre (Potree)</button>
                     <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>autzen</p>Autzen (Potree)</button>
                     <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>hanover</p>Hanover (Potree)</button>
                     <button onclick="lidarLoad(this)" class="list-group-item"><p hidden>beer-caves</p>Iowa City Beer Caves (UIowa)</button>
+                    
+                </ul> -->
+                <ul>
+                  <button onclick="lidarLoad(this)" class="button"><p hidden>lasvegas</p>Las Vegas (UVIC Hyperspectral Lab)</button>
+                  <button onclick="lidarLoad(this)" class="button"><p hidden>nrcan170</p>Ashcroft (UVIC Hyperspectral Lab)</button>
+                  <button onclick="lidarLoad(this)" class="button"><p hidden>red-rocks</p>Red Rocks Ampitheatre (Potree)</button>
+                  <button onclick="lidarLoad(this)" class="button"><p hidden>autzen</p>Autzen (Potree)</button>
+                  <button onclick="lidarLoad(this)" class="button"><p hidden>hanover</p>Hanover (Potree)</button>
+                  <button onclick="lidarLoad(this)" class="button"><p hidden>beer-caves</p>Iowa City Beer Caves (UIowa)</button>
                 </ul>
                 
             </div>
@@ -81,14 +96,16 @@
                     <input class="u-full-width" type="text" placeholder="magnet, hash or http(s) .torrent" ng-model="torrentInput" ng-disabled="$root.disabled"/>
                 </div> -->
                 <div class="two columns download-button">
-                    <button ng-click="addMagnetLasVegas()" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i> </button>
-                    <button ng-click="addMagnetAshcroft()" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i> </button>
-                </div>
+                  <ul>
+                    <button ng-click="addMagnetLasVegas()" class="button2" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i>   LasVegas_AdjustedLasFiles.torrent (782 MB)</button>
+                    <button ng-click="addMagnetAshcroft()" class="button2" ng-class="{'button-primary': torrentInput.length}"><i class="fa fa-download"></i>   NRCAN-Ashcroft_2018_delivery.torrent (1.0 GB)</button>
+                  </ul>
+               </div>
             </div>
             </div>
 
             <div class="col-md-8">
-              <div class="row" style="margin:50px">
+              <div class="row" style="margin:30px">
 
               </div>
 
