@@ -1,0 +1,7 @@
+docker rmi $(docker images -q) -f
+
+rice embed-go
+
+docker build . -f ./Dockerfile -t geocontainer.azurecr.io/geospace:latest
+
+docker push geocontainer.azurecr.io/geospace

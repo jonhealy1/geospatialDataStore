@@ -8,21 +8,76 @@ h1 {
   margin-left: 100px;
   font-size: 50px;
   margin-bottom: 20px;
+  opacity: .6;
+}
+
+h2 {
+  margin-left: 100px;
+  font-size: 30px;
+  color: rgb(100, 9, 9); /* White text */
+  opacity: .6;
 }
 
 footer {
   margin-top: 10px; }
 
+  .story {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #8f8f8f;
+    border: none;
+    color: rgb(0, 0, 0);
+    text-align: left;
+    font-size: 12px;
+    padding-left: 20px;
+    width: 330px;
+    transition: all 0.5s;
+    opacity: .6;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .story span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .story span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .story:hover span {
+    padding-right: 25px;
+  }
+  
+  .story:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+
+
+
+
 .btn-group2 button {
-  width:35%;
+  /* width:30%; */
+  display: inline-block;
+  border-radius: 4px;
   margin: 0 5% 1px 10%;
   background-color: #4CAF50; /* Green background */
   border: 1px solid green; /* Green border */
   color: rgb(0, 0, 0); /* White text */
-  opacity: .8;
-  padding: 10px 24px; /* Some padding */
+  opacity: .6;
+  padding: 10px 100px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
-  float: left; /* Float the buttons side by side */
+  float: left; Float the buttons side by side
   font-weight: bold;
 }
   
@@ -43,13 +98,14 @@ footer {
   }
   .bg-img {
     /* The image used */
+    margin-top: 10px;
     background-image: url("World-Map-Transparent-Images.png");
   
     min-height: 700px;
     
     /* Center and scale the image nicely */
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: space;
     background-size: cover;
    
     /* Needed to position the navbar */
@@ -64,10 +120,10 @@ footer {
     color: rgb(0, 0, 0);
     text-align: left;
     font-size: 12px;
-    padding-left: 20px;
-    width: 430px;
+    padding-left: 10px;
+    width: 30px;
     transition: all 0.5s;
-    opacity: .8;
+    opacity: .6;
     cursor: pointer;
     margin: 5px;
   }
@@ -106,9 +162,9 @@ footer {
     text-align: left;
     font-size: 12px;
     padding-left: 20px;
-    width: 430px;
+    width: 230px;
     transition: all 0.5s;
-    opacity: .8;
+    opacity: .6;
     cursor: pointer;
     margin: 5px;
   }
@@ -175,7 +231,7 @@ footer {
 
   #gh {
     font-size: 48px;
-    color: #f7efef;
+    color: #d3d3d3;
   }
   
   .topnav a:hover {
@@ -283,9 +339,9 @@ iframe {
   background-color: rgb(30, 30, 30);
 }
 #map {
-  margin: 0 5%;
+  margin: 0 0%;
   height: 600px;
-  width: 95%;
+  width: 100%;
 }
 #title-img {
   height:100px;

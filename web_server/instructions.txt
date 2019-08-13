@@ -1,0 +1,5 @@
+export GOPATH=/Users/Uday.Hiwarale/uday-gh/go_workspaces/main
+export GOBIN=$GOPATH/bin
+PATH=$PATH:$GOPATH:$GOBIN
+export PATH
+
