@@ -325,8 +325,8 @@ iframe {
 
 .btn-logout {
   float: right;
-  padding: 1% 2% 2% 2%;
-  margin: 1% 2%;
+  padding: .75% 1.5% 1.5% 1.5%;
+  margin: 0.5% 2%;
   font-weight: bold;
   color: black;
 }

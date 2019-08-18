@@ -1,5 +1,7 @@
 package com.geospatial.entities;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 
 public class Client {
@@ -7,19 +9,17 @@ public class Client {
     @Id
     public String id;
 
-    public String userName;
-
+    public String username;
     public String password;
-
-
+    private List<Object> roles;
 
 
 
     // Constructors
     public Client() {}
 
-    public Client(String userName, String password) {
-        this.userName = userName;
+    public Client(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -30,11 +30,11 @@ public class Client {
     public void setId(String id) {
     	this.id = id;
     }
-    public String getUserName() {
-        return this.userName;
+    public String getUsername() {
+        return this.username;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getPassword() {
         return this.password;
@@ -42,10 +42,16 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
+    public List<Object> getRoles() {
+        return this.roles;
+    }
+    public void setRoles(List<Object> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public String toString() {
-        return String.format(userName);
+        return String.format(username);
     }
 
 }
