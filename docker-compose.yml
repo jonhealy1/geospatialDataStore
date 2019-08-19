@@ -2,59 +2,32 @@ version: '3'
 
 services:
 
-  # redis:
-  #   image: redislabs/rejson
-  #   ports:
-  #     - "6379:6379"
-  #   volumes:
-  #     - "/home/docker/data:/data"
-  #   deploy:
-  #     placement:
-  #       constraints: [node.role == manager]
-  #   command: redis-server --appendonly yes
-  #   networks:
-  #     - webnet
-
-  # main_server:
-  #   image: hyephive/geospatialdatastore_main_server
-  #   # build: main_server/
-  #   deploy:
-  #     replicas: 5
-  #     resources:
-  #       limits:
-  #         cpus: "0.1"
-  #         memory: 50M
-  #     restart_policy:
-  #       condition: on-failure
-  #   links:
-  #     - redis
-  #   depends_on:
-  #     - redis
-  #   environment:
-  #     REDIS_URL: redis:6379
-  #   # volumes:
-  #   #   - .:/go/src/main_server
-  #   ports:
-  #     - 3030:3001
-  #   restart: always
-  #   networks:
-  #     - webnet
-
-  web_server:
-    image: hyephive/geospatialdatastore_web_server
-    # build: web_server/
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
-    # volumes:
-    #   - .:/go/src/web_server
+  web_server-spring:
+    # image: 00theballs00/web_server
+    build: web_server-spring/geospatial/
+    container_name: web_server-spring
+    restart: always
+    working_dir: /opt/app
+    depends_on: 
+      - mongodb
     ports:
-      - 12346:12345
+      - 8080:8080
+    networks:
+      - webnet
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: springboot-mongo
+    ports: 
+      - 27018:27017
+    volumes:
+      - $HOME/data/springboot-mongo-data:/data/db
+      - $HOME/data/springboot-mongo-bkp:/data/bkp
+    restart: always
+    # environment: 
+    #   - MONGO_DATA_DIR=/data/db
+    #   - MONGO_LOG_DIR=/dev/null
     networks:
       - webnet
 
@@ -62,7 +35,7 @@ services:
     image: 00theballs00/potree_entwine
     # build: ./potree_entwine
     deploy:
-      replicas: 1
+      replicas: 5
       resources:
         limits:
           cpus: "0.1"
@@ -79,7 +52,7 @@ services:
     image: 00theballs00/entwine_conda
     # build: ./entwine
     deploy:
-      replicas: 1
+      replicas: 5
       resources:
         limits:
           cpus: "0.1"
@@ -98,7 +71,7 @@ services:
   visualizer:
     image: dockersamples/visualizer:stable
     ports:
-      - "8080:8080"
+      - "12222:12222"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
