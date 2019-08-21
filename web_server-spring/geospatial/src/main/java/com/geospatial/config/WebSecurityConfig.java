@@ -1,18 +1,17 @@
 package com.geospatial.config;
 
+import com.geospatial.entities.Client;
 import com.geospatial.handlers.CustomAuthenticationSuccessHandler;
+import com.geospatial.services.ClientService;
+import com.geospatial.services.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
 @Configuration
@@ -23,13 +22,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private CustomAuthenticationSuccessHandler loginSuccessHandler; 
 
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/static/**", "/").permitAll()
+                .antMatchers("/static/**", "/", "/signupClient").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin().successHandler(this.loginSuccessHandler)
@@ -43,16 +47,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 // .logoutSuccessHandler(this.logoutSuccessHandler);
     }
 
-    @Bean
+    // @Bean
+    // @Override
+    // public UserDetailsService userDetailsService() {
+    //     UserDetails client =
+    //          User.withDefaultPasswordEncoder()
+    //             .username("masterClient")
+    //             .password("pass123")
+    //             .roles("CLIENT")
+    //             .build();
+    //     return new InMemoryUserDetailsManager(client);
+    // }
+
     @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails client =
-             User.withDefaultPasswordEncoder()
-                .username("masterClient")
-                .password("pass123")
-                .roles("CLIENT")
-                .build();
-        return new InMemoryUserDetailsManager(client);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        Client manager = new Client("manager", "pass123");
+            manager.setRoles("CLIENT");
+        try {
+            this.clientService.registerClient(manager);
+        } catch (Exception e){
+            System.out.println("manager failed or already exists...");
+        }
+        auth.userDetailsService(this.userDetailsService);
+
     }
    
     @Override

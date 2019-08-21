@@ -20,7 +20,7 @@ public interface ClientService {
     public Client registerClient(Client client) throws UsernameExistsException;
 
     @Transactional
-    public Client createClientDTO(ClientDTO clientDto); 
+    public Client createClientDTO(ClientDTO clientDto) throws UsernameExistsException; 
 
     @Transactional
     public String deleteClientByUsername(String username);

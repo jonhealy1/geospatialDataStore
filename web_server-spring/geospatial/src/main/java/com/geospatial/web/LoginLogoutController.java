@@ -3,8 +3,11 @@ package com.geospatial.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.geospatial.dtos.ClientDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.View;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -25,6 +28,8 @@ public class LoginLogoutController {
 
     @RequestMapping(value={"/login", "/", ""}, method = RequestMethod.GET)
     public String login(Model model) {
+        ClientDTO clientDto = new ClientDTO();
+        model.addAttribute("clientDto", clientDto);
         return "login";
     }
 
@@ -36,6 +41,14 @@ public class LoginLogoutController {
         }        
         return "redirect:/login?logout";
     }
+
+        
+    @RequestMapping(value="/signupClient", method = RequestMethod.GET)
+    public String signupClient(View view) {
+        return "login";
+    }
+
+
 
 
 

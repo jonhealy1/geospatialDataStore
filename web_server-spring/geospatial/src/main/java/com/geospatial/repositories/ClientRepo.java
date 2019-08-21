@@ -14,13 +14,14 @@ public interface ClientRepo extends MongoRepository<Client, String> {
     @Query("{}")
     List<Client> getClients();
 
-    @Query("{ 'username ': ?0 }")
+    @Query("{ 'name': ?0 }")
     Client findClientByUsername(String username);
 
-    @DeleteQuery("{ 'username ': ?0 }")
-    Client deleteClientByUsername(String username);
+    @DeleteQuery("{ 'name': ?0 }")
+    void deleteClientByUsername(String username);
 
-
+    @DeleteQuery("{}")
+    void deleteClients();
 
     
 }

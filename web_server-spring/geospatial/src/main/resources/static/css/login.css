@@ -62,7 +62,7 @@ input:focus{
     margin-right: 5px;
 }
 
-.login_btn{
+.login-btn{
     color: black;
     font-weight:bold;
     background-color: #859cff;;
@@ -70,7 +70,7 @@ input:focus{
     width: 100px;
 }
 
-.login_btn:hover{
+.login-btn:hover{
     color: black;
     background-color: white;
 }

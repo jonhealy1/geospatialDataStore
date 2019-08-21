@@ -3,32 +3,32 @@ package com.geospatial.dtos;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-// import com.geospatial.validators.ValidPassword;
+import com.geospatial.validators.ValidPassword;
+
+
 
 public class ClientDTO{
 
     @NotNull
     @NotEmpty
-    private String username;
-
-
-
+    private String name;
 
     @NotNull
     @NotEmpty
-    // @ValidPassword
+    @ValidPassword
     private String password;
 
+    @NotNull
+    @NotEmpty
+    @ValidPassword
+    private String matchPassword;
 
 
-    // private String matchPassword;
-
-
-    public String getUsername() {
-        return this.username;
+    public String getname() {
+        return this.name;
     }
-    public void setUsername(String username) {
-        this.username = username;
+    public void setname(String name) {
+        this.name = name;
     }
     public String getPassword() {
         return this.password;
@@ -36,11 +36,11 @@ public class ClientDTO{
     public void setPassword(String password) {
         this.password = password;
     }
-    // public String getMatchPassword() {
-    //     return this.matchPassword;
-    // }
-    // public void setMatchPassword(String matchPassword) {
-    //     this.matchPassword = matchPassword;
-    // }
+    public String getMatchPassword() {
+        return this.matchPassword;
+    }
+    public void setMatchPassword(String matchPassword) {
+        this.matchPassword = matchPassword;
+    }
 
 }

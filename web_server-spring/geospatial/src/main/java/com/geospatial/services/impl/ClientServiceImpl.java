@@ -36,7 +36,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public Client registerClient(Client client) throws UsernameExistsException{
-        Client check = clientRepo.findClientByUsername(client.getUsername());
+        Client check = clientRepo.findClientByUsername(client.getname());
         if(check != null) {
             throw new UsernameExistsException("That username is already in use");
         }
@@ -46,8 +46,12 @@ public class ClientServiceImpl implements ClientService {
     
     @Override
     @Transactional
-    public Client createClientDTO(ClientDTO clientDto) {
-        Client newClient = new Client(clientDto.getUsername(), clientDto.getPassword());
+    public Client createClientDTO(ClientDTO clientDto) throws UsernameExistsException {
+        Client check = clientRepo.findClientByUsername(clientDto.getname());
+        if(check != null){
+            throw new UsernameExistsException("That username is already in use");
+        }
+        Client newClient = new Client(clientDto.getname(), clientDto.getPassword());
         newClient.setRoles("CLIENT");
         return clientRepo.save(newClient);
     }

@@ -7,7 +7,7 @@ public class Client {
     @Id
     public String id;
 
-    public String username;
+    public String name;
 
     public String password;
 
@@ -20,8 +20,8 @@ public class Client {
     // Constructors
     public Client() {}
 
-    public Client(String username, String password) {
-        this.username = username;
+    public Client(String name, String password) {
+        this.name = name;
         this.password = password;
     }
 
@@ -32,11 +32,11 @@ public class Client {
     public void setId(String id) {
     	this.id = id;
     }
-    public String getUsername() {
-        return this.username;
+    public String getname() {
+        return this.name;
     }
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setname(String name) {
+        this.name = name;
     }
     public String getPassword() {
         return this.password;
@@ -54,7 +54,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return String.format(username);
+        return String.format(name);
     }
 
 }
