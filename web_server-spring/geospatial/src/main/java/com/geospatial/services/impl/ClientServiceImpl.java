@@ -9,6 +9,7 @@ import com.geospatial.repositories.ClientRepo;
 import com.geospatial.services.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,9 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getClients() {
         return clientRepo.getClients();
     }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Client getClientByUsername(String username){
@@ -40,6 +44,7 @@ public class ClientServiceImpl implements ClientService {
         if(check != null) {
             throw new UsernameExistsException("That username is already in use");
         }
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
         return clientRepo.save(client);
 
     }
@@ -51,7 +56,7 @@ public class ClientServiceImpl implements ClientService {
         if(check != null){
             throw new UsernameExistsException("That username is already in use");
         }
-        Client newClient = new Client(clientDto.getname(), clientDto.getPassword());
+        Client newClient = new Client(clientDto.getname(), passwordEncoder.encode(clientDto.getPassword()));
         newClient.setRoles("CLIENT");
         return clientRepo.save(newClient);
     }
