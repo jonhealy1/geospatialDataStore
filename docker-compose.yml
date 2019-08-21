@@ -42,19 +42,19 @@ services:
 
   web_server:
     image: hyephive/geospatialdatastore_web_server
-    # build: web_server/
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
-    # volumes:
-    #   - .:/go/src/web_server
+    #build: web_server/
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     limits:
+    #       cpus: "0.1"
+    #       memory: 50M
+    #   restart_policy:
+    #     condition: on-failure
+    volumes:
+      - .:/go/src/web_server
     ports:
-      - 12346:12345
+      - 12351:80
     networks:
       - webnet
 

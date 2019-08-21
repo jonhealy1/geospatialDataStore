@@ -14,6 +14,6 @@ RUN echo "installed web server"
 WORKDIR /go/src/web_server
 RUN rice embed-go
 
-EXPOSE 80
+EXPOSE 82
 
 ENTRYPOINT /go/bin/web_server

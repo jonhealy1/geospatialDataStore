@@ -4,6 +4,16 @@ run from the main folder that contains the docker-compose.yml file
 $ docker-compose build  
 $ docker-compose up  
 
+navigate to:
+website: localhost:12351
+file server: localhost:8111
+entwine/ potree: localhost:8085
+
+----------------------------- 
+
+
+Dev notes:
+
 1. navigate to localhost:3030 - should see the hello message  
 
 navigate to localhost:3030/catalogs - should see some catalogs data  
@@ -47,5 +57,5 @@ This builds a file called rice-box.go that handles everything automatically.
 $ go build  
 $ go run main.go  
 
-navigate to localhost:12345  
+navigate to localhost:12351
 
