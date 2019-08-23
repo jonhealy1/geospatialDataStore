@@ -1,18 +1,21 @@
 install docker
 
 run from the main folder that contains the docker-compose.yml file  
+
+$ git pull https://github.com/noonespecial009/geospatialDataStore.git  
+$ cd Code  
 $ docker-compose build  
 $ docker-compose up  
 
-navigate to:
-website: localhost:12351
-file server: localhost:8111
-entwine/ potree: localhost:8085
-
+navigate to:  
+website: localhost:12351  
+file server: localhost:8111  
+entwine/ potree: localhost:8085  
+  
 ----------------------------- 
 
 
-Dev notes:
+Dev notes:  
 
 1. navigate to localhost:3030 - should see the hello message  
 
