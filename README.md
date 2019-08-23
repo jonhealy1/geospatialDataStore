@@ -1,4 +1,11 @@
-install docker
+website: https://geocontainer.azurewebsites.net/  
+note: sometimes the UVIC images on Azure don't load / sometimes they do  
+
+--------------------------------
+
+run Code:   
+
+install docker  
 
 run from the main folder that contains the docker-compose.yml file  
 
