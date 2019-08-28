@@ -77,42 +77,42 @@
 		  </button>
 		</div>
 		<div class="modal-body">
-			<form id="submitForm" th:object="${clientDto}" enctype="utf8">
+			<form th:action="@{/}" method="POST"  id="submitForm" th:object="${client}" enctype="utf8">				
 				<div class="input-group form-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"><i class="fas fa-user"></i></span>
 					</div>
-				<input type="text" autocomplete="off" class="form-control" name="name" placeholder="Username" th:field="*{name}">
-				<div th:each="error : ${#fields.errors('name')}" class="alert alert-danger" th:text="${error}"></div>
-							
+					<input style="width:80%" type="text" autocomplete="off" class="form-control" name="name" placeholder="Username" th:value="${name}"	/>
+					<div style="width:100%" th:if="${#fields.hasErrors('name')}" class="alert alert-danger error-check-name" th:errors="*{name}"></div>
+				</div>
+				<div class="input-group form-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i class="fas fa-user"></i></span>
+					</div>
+					<input style="width:80%" type="text" autocomplete="off" class="form-control" name="email" placeholder="Email" th:value="${email}"	/>
+					<div style="width:100%" th:if="${#fields.hasErrors('email')}" class="alert alert-danger error-check-name" th:errors="*{email}"></div>
+								
 				</div>
 				<div class="input-group form-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"><i class="fas fa-key"></i></span>
 					</div>
-					<input type="password" class="form-control" name="password" placeholder="Password" th:field="*{password}">
-					<div th:each="error : ${#fields.errors('password')}" class="alert alert-danger" th:text="${error}"></div>
+					<input style="width:80%" type="password" class="form-control" name="password" placeholder="Password" th:field="*{password}"	/>
+					<div style="width:100%" th:if="${#fields.hasErrors('password')}" class="alert alert-danger error-check-pass" th:errors="*{password}"></div>
 				</div>
 				<div class="input-group form-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"><i class="fas fa-key"></i></span>
 					</div>
-					<input type="password" class="form-control" name="passwordMatch" placeholder="Re-enter Password" th:field="*{matchPassword}">
-					<div th:each="error : ${#fields.errors('matchPassword')}" class="alert alert-danger" th:text="${error}"></div>
+					<input style="width:80%" type="password" class="form-control" name="matchPassword" placeholder="Re-enter Password" th:field="*{matchPassword}"	/>
+					<div style="width:100%" th:if="${#fields.hasErrors('matchPassword')}" class="alert alert-danger error-check-match" th:errors="*{matchPassword}"></div>
 				</div>
 
 				<div class="form-group">
 					<button type="submit" class="btn float-right login-btn signup-btn">Submit</button>
 				</div>
 			</form>
-					
-				
-			
 		</div>
-		<!-- <div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		  <button type="button" class="btn btn-primary">Save changes</button>
-		</div> -->
 	  </div>
 	</div>
   </div>

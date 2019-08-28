@@ -13,15 +13,16 @@ public class Client {
 
     public String[] roles;
 
-
+    public String email;
 
 
 
     // Constructors
     public Client() {}
 
-    public Client(String name, String password) {
+    public Client(String name, String email, String password) {
         this.name = name;
+        this.email = email;
         this.password = password;
     }
 
@@ -50,6 +51,13 @@ public class Client {
     }
     public void setRoles(String... roles) {
         this.roles = roles;
+    }
+
+    public String getEmail() {
+    	return this.email;
+    }
+    public void setEmail(String email) {
+    	this.email = email;
     }
 
     @Override

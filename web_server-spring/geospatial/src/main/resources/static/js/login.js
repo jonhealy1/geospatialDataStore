@@ -1,28 +1,23 @@
 $(document).ready(function(){
 
-    // $(document).ready(function(){
-//     $.post({
-//         url: "/deleteClients"
-//     })
-// })
+    // Display Sign-in on errors
+
+    var finalCheck = false;
+    var check = $('.error-check-name').text()
+    if(check != ""){
+        finalCheck = true;
+    }
+    check = $('.error-check-pass').text()
+    if(check != ""){
+        finalCheck = true;
+    }
+    check = $('.error-check-match').text()
+    if(check != ""){
+        finalCheck = true;
+    }
+    if(finalCheck == true){
+        $('#registerModal').modal('show');
+    }
 
 
-    $('#submitForm').submit(function(e){
-
-        e.preventDefault();
-
-        var formData = $(this).serialize();
-
-        // $.post("/signupClient", formData).complete(function(){
-        //     console.log("Success")
-        // })
-
-        $.post({
-            url: "/signupClient",
-            data: formData,
-            complete: function(){
-                console.log("success")
-            } 
-        })
-    })
 })

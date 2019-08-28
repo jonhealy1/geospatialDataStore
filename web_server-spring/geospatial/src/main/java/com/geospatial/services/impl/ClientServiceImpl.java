@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.geospatial.dtos.ClientDTO;
 import com.geospatial.entities.Client;
+import com.geospatial.exceptions.EmailExistsException;
 import com.geospatial.exceptions.UsernameExistsException;
 import com.geospatial.repositories.ClientRepo;
 import com.geospatial.services.ClientService;
@@ -33,16 +34,25 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client getClientByEmail(String email){
+        return clientRepo.findClientByEmail(email);
+    }
+
+    @Override
     public String deleteClientByUsername(String username){
         return "deleted " + username;
     }
 
     @Override
     @Transactional
-    public Client registerClient(Client client) throws UsernameExistsException{
+    public Client registerClient(Client client) throws UsernameExistsException, EmailExistsException{
         Client check = clientRepo.findClientByUsername(client.getname());
         if(check != null) {
             throw new UsernameExistsException("That username is already in use");
+        }
+        check = clientRepo.findClientByEmail(client.getEmail());
+        if(check != null) {
+            throw new EmailExistsException("That email is already in use");
         }
         client.setPassword(passwordEncoder.encode(client.getPassword()));
         return clientRepo.save(client);
@@ -51,12 +61,16 @@ public class ClientServiceImpl implements ClientService {
     
     @Override
     @Transactional
-    public Client createClientDTO(ClientDTO clientDto) throws UsernameExistsException {
+    public Client createClientDTO(ClientDTO clientDto) throws UsernameExistsException, EmailExistsException{
         Client check = clientRepo.findClientByUsername(clientDto.getname());
         if(check != null){
             throw new UsernameExistsException("That username is already in use");
         }
-        Client newClient = new Client(clientDto.getname(), passwordEncoder.encode(clientDto.getPassword()));
+        check = clientRepo.findClientByEmail(clientDto.getEmail());
+        if(check != null) {
+            throw new EmailExistsException("That email is already in use");
+        }
+        Client newClient = new Client(clientDto.getname(), clientDto.getEmail(), passwordEncoder.encode(clientDto.getPassword()));
         newClient.setRoles("CLIENT");
         return clientRepo.save(newClient);
     }

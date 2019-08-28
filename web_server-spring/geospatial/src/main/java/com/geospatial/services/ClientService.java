@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.geospatial.dtos.ClientDTO;
 import com.geospatial.entities.Client;
+import com.geospatial.exceptions.EmailExistsException;
 import com.geospatial.exceptions.UsernameExistsException;
 
 import org.springframework.stereotype.Service;
@@ -16,11 +17,13 @@ public interface ClientService {
 
     public Client getClientByUsername(String username);
 
-    @Transactional
-    public Client registerClient(Client client) throws UsernameExistsException;
+    public Client getClientByEmail(String email);
 
     @Transactional
-    public Client createClientDTO(ClientDTO clientDto) throws UsernameExistsException; 
+    public Client registerClient(Client client) throws UsernameExistsException, EmailExistsException;
+
+    @Transactional
+    public Client createClientDTO(ClientDTO clientDto) throws UsernameExistsException, EmailExistsException;
 
     @Transactional
     public String deleteClientByUsername(String username);

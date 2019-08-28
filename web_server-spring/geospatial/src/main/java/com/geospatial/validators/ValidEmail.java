@@ -9,12 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PasswordMatchesValidator.class)
+@Constraint(validatedBy = EmailValidator.class)
 @Documented
-public @interface PasswordMatches {
-    String message() default "Passwords don't match!";
+public @interface ValidEmail{
+    String message() default "Invalid email!";
     Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default{};
+
 }

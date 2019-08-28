@@ -17,6 +17,9 @@ public interface ClientRepo extends MongoRepository<Client, String> {
     @Query("{ 'name': ?0 }")
     Client findClientByUsername(String username);
 
+    @Query("{ 'email': ?0 }")
+    Client findClientByEmail(String email);
+
     @DeleteQuery("{ 'name': ?0 }")
     void deleteClientByUsername(String username);
 

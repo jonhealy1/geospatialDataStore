@@ -29,7 +29,7 @@ html,body{
     cursor: pointer;
 }
 
-.card-header h3{
+.card-header h3, .card-footer h6{
     color: white;
     font-weight:bold;
 }

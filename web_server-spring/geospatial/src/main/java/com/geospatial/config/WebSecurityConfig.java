@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/static/**", "/", "/signupClient").permitAll()
+                .antMatchers("/static/**", "/", "/success").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin().successHandler(this.loginSuccessHandler)
@@ -66,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider());
-        Client manager = new Client("manager", "pass123");
+        Client manager = new Client("guest", "guest@email.com", "pass123");
             manager.setRoles("CLIENT");
         try {
             this.clientService.registerClient(manager);

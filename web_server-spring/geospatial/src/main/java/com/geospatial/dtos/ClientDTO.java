@@ -3,6 +3,7 @@ package com.geospatial.dtos;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.geospatial.validators.ValidEmail;
 import com.geospatial.validators.ValidPassword;
 
 
@@ -11,17 +12,22 @@ public class ClientDTO{
 
     @NotNull
     @NotEmpty
-    private String name;
+    public String name;
 
     @NotNull
     @NotEmpty
     @ValidPassword
-    private String password;
+    public String password;
 
     @NotNull
     @NotEmpty
     @ValidPassword
-    private String matchPassword;
+    public String matchPassword;
+
+    @NotNull
+    @NotEmpty
+    @ValidEmail
+    public String email;
 
 
     public String getname() {
@@ -41,6 +47,12 @@ public class ClientDTO{
     }
     public void setMatchPassword(String matchPassword) {
         this.matchPassword = matchPassword;
+    }
+    public String getEmail() {
+    	return this.email;
+    }
+    public void setEmail(String email) {
+    	this.email = email;
     }
 
 }
